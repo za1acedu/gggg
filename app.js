@@ -294,6 +294,90 @@ const CATEGORIES = {
     { word: "Konsola",     hint: "Grasz na niej w gry wideo" },
     { word: "PlayStation", hint: "Konsola Sony" },
     { word: "Minecraft",   hint: "Gra z klocków pikseli" }
+  ],
+
+  "Polska impreza 🍻": [
+    { word: "Setka czystej",            hint: "" },
+    { word: "Pijany wujek na chrzcinach", hint: "" },
+    { word: "Mleko po wódce",           hint: "" },
+    { word: "Disco polo o trzeciej w nocy", hint: "" },
+    { word: "Telefon do byłej",         hint: "" },
+    { word: "Sąsiad walący w rurę",     hint: "" },
+    { word: "Kebab w drodze powrotnej", hint: "" },
+    { word: "Toast za młodego",         hint: "" },
+    { word: "Wódka z sokiem jabłkowym", hint: "" },
+    { word: "Karaoke z Bayer Full",     hint: "" },
+    { word: "Nielegal od dziadka",      hint: "" },
+    { word: "Wyjście po angielsku",     hint: "" },
+    { word: "Pożyczka piątki na taxi",  hint: "" },
+    { word: "Krzesło na głowie",        hint: "" },
+    { word: "Płacz nad zlewem",         hint: "" },
+    { word: "Piosenka Sławomira",       hint: "" },
+    { word: "Walka na poduszki o trzeciej", hint: "" },
+    { word: "Skakanie przez ognisko",   hint: "" }
+  ],
+
+  "Polskie wesele 💍": [
+    { word: "Pierwszy taniec",          hint: "" },
+    { word: "Gorzko gorzko",            hint: "" },
+    { word: "Oczepiny z chustą",        hint: "" },
+    { word: "Polonez na rozpoczęcie",   hint: "" },
+    { word: "Tort weselny",             hint: "" },
+    { word: "Rzucanie bukietem",        hint: "" },
+    { word: "Wujek śpiewający Sting'a", hint: "" },
+    { word: "Babcia robiąca zdjęcia",   hint: "" },
+    { word: "Krawat na czole",          hint: "" },
+    { word: "Świadek pod stołem",       hint: "" },
+    { word: "Koperta z pieniędzmi",     hint: "" },
+    { word: "Druhna w łzach",           hint: "" },
+    { word: "Wódka stawiana przez teścia", hint: "" },
+    { word: "Konkurs na najlepszą minę", hint: "" },
+    { word: "DJ grający Kayah",         hint: "" },
+    { word: "Buty pod stołem",          hint: "" },
+    { word: "Para młoda znika",         hint: "" },
+    { word: "Wesele Czterdziestoletni", hint: "" }
+  ],
+
+  "Klubowa noc 🪩": [
+    { word: "Bramkarz mierzący wzrok", hint: "" },
+    { word: "Strobo prosto w oczy",    hint: "" },
+    { word: "Selfie w klubowej toalecie", hint: "" },
+    { word: "Drink za pięćdziesiąt",   hint: "" },
+    { word: "Numer napisany na serwetce", hint: "" },
+    { word: "Tańce na blacie baru",    hint: "" },
+    { word: "Sztuczny dym z maszyny",  hint: "" },
+    { word: "Kolejka po kibel",        hint: "" },
+    { word: "Płaszcz w szatni",        hint: "" },
+    { word: "Glitter na policzku",     hint: "" },
+    { word: "Stracony portfel",        hint: "" },
+    { word: "Zniknięcie kumpla",       hint: "" },
+    { word: "Spadanie z hulajnogi",    hint: "" },
+    { word: "Stempel na ręce",         hint: "" },
+    { word: "Wylany drink na koleżankę", hint: "" },
+    { word: "Taksówka o piątej rano",  hint: "" },
+    { word: "Beka z bramkarzem",       hint: "" },
+    { word: "Stragan z hot dogiem",    hint: "" }
+  ],
+
+  "Imprezowy poranek 🤕": [
+    { word: "Tabletka na ból głowy",   hint: "" },
+    { word: "Co ja wczoraj robiłem",   hint: "" },
+    { word: "Pizza na śniadanie",      hint: "" },
+    { word: "Galeria zdjęć niespodzianka", hint: "" },
+    { word: "Numer na ręce flamastrem", hint: "" },
+    { word: "Buty zostawione u kogoś",  hint: "" },
+    { word: "Już nigdy więcej",         hint: "" },
+    { word: "Niedzielny smutek",        hint: "" },
+    { word: "Mleko z miodem",           hint: "" },
+    { word: "Telefon do mamy ze wstydem", hint: "" },
+    { word: "Recap na grupowym czacie", hint: "" },
+    { word: "Brak pamięci od dwudziestej trzeciej", hint: "" },
+    { word: "Spacer wstydu",            hint: "" },
+    { word: "Smutna kawa o czternastej", hint: "" },
+    { word: "Powracające flashbacki",   hint: "" },
+    { word: "Kac trzydniowy",           hint: "" },
+    { word: "Włączona kamera selfie",   hint: "" },
+    { word: "Cudza koszula na sobie",   hint: "" }
   ]
 };
 
@@ -304,7 +388,6 @@ const state = {
   players: ["Gracz 1", "Gracz 2", "Gracz 3", "Gracz 4"],
   impostors: 1,
   category: "__random",
-  showHint: true,
   roles: [],
   seen: [],
   word: null,
@@ -405,7 +488,6 @@ function initSetup() {
   $("imp-plus").onclick  = () => updateImpostors(+1);
   $("add-player-btn").onclick = addPlayer;
 
-  $("show-hint").onchange = (e) => state.showHint = e.target.checked;
   select.onchange = (e) => state.category = e.target.value;
 
   $("start-btn").onclick = startGame;
@@ -510,13 +592,6 @@ function revealCard() {
     $("card-word-box").classList.remove("hidden");
     $("card-impostor").classList.add("hidden");
     $("card-word").textContent = state.word;
-    const hintEl = $("card-hint");
-    if (state.showHint) {
-      hintEl.textContent = state.hint;
-      hintEl.style.display = "block";
-    } else {
-      hintEl.style.display = "none";
-    }
   }
 }
 
@@ -529,7 +604,7 @@ function afterCard() {
 
 function endRound() {
   $("result-word").textContent = state.word;
-  $("result-hint").textContent = state.hint;
+  $("result-hint").textContent = state.activeCategory;
   const impNames = state.roles
     .map((r, i) => r === "impostor" ? state.players[i] : null)
     .filter(Boolean);
