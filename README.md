@@ -27,7 +27,8 @@ Mitologia · Zabawki i gry
 ## Uruchomienie lokalne
 
 ```bash
-docker compose up -d
+docker build -t impostor .
+docker run -p 3000:80 impostor
 # otwórz http://localhost:3000
 ```
 
