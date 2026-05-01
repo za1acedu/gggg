@@ -1,15 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Photopea Web Editor</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f0f1e" />
+  <title>Impostor — Gra Imprezowa</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Photopea Image Editor</h1>
-  <input type="file" id="fileInput" accept="image/*">
-  <button id="editBtn" disabled>Edit in Photopea</button>
-  <div id="photopeaContainer"></div>
-  <script src="main.js"></script>
+  <div id="app">
+    <!-- Ekran startowy -->
+    <section id="screen-setup" class="screen active">
+      <header>
+        <h1>🎭 Impostor</h1>
+        <p class="subtitle">Znajdź szpiega w grupie</p>
+      </header>
+
+      <div class="card">
+        <label>Liczba graczy</label>
+        <div class="counter">
+          <button class="btn-circle" id="players-minus">−</button>
+          <span id="players-count">4</span>
+          <button class="btn-circle" id="players-plus">+</button>
+        </div>
+        <p class="hint">Min. 3, maks. 12</p>
+      </div>
+
+      <div class="card">
+        <label>Liczba impostorów</label>
+        <div class="counter">
+          <button class="btn-circle" id="imp-minus">−</button>
+          <span id="imp-count">1</span>
+          <button class="btn-circle" id="imp-plus">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <label>Kategoria</label>
+        <select id="category-select"></select>
+      </div>
+
+      <div class="card toggle-card">
+        <label for="show-hint">Pokaż podpowiedź graczom</label>
+        <input type="checkbox" id="show-hint" checked />
+      </div>
+
+      <button id="start-btn" class="btn-primary">▶ Rozpocznij grę</button>
+
+      <footer>
+        <p class="rules-link" id="rules-btn">📖 Jak grać?</p>
+      </footer>
+    </section>
+
+    <!-- Ekran zasad -->
+    <section id="screen-rules" class="screen">
+      <h2>Jak grać?</h2>
+      <ol>
+        <li>Wybierz liczbę graczy i kategorię.</li>
+        <li>Każdy gracz po kolei zagląda do swojej karty (telefon krąży po stole).</li>
+        <li>Gracze widzą hasło i podpowiedź. <b>Impostor</b> nic nie wie — musi zgadywać.</li>
+        <li>Po obejrzeniu kart każdy <b>jednym słowem</b> opisuje hasło.</li>
+        <li>Po rundzie głosujecie: kto jest impostorem?</li>
+        <li>Jeśli wykryjecie szpiega — wygrywacie. Jeśli nie — impostor zwycięża!</li>
+      </ol>
+      <button class="btn-primary" data-back>← Wróć</button>
+    </section>
+
+    <!-- Ekran karty gracza -->
+    <section id="screen-card" class="screen">
+      <div id="card-cover" class="card-cover">
+        <h2 id="card-player-name">Gracz 1</h2>
+        <p>Weź telefon i naciśnij, aby zobaczyć swoją kartę</p>
+        <button id="reveal-btn" class="btn-primary">🔓 Pokaż kartę</button>
+      </div>
+
+      <div id="card-reveal" class="card-reveal hidden">
+        <div id="card-word-box" class="card-word-box">
+          <p class="card-label">Hasło</p>
+          <h2 id="card-word"></h2>
+          <p class="card-hint" id="card-hint"></p>
+        </div>
+
+        <div id="card-impostor" class="card-impostor hidden">
+          <p class="card-label">Twoja rola</p>
+          <h2>🕵️ IMPOSTOR</h2>
+          <p>Nie znasz hasła. Słuchaj uważnie i blefuj!</p>
+          <p class="card-hint">Kategoria: <b id="impostor-category"></b></p>
+        </div>
+
+        <button id="hide-btn" class="btn-primary">✅ Schowaj i podaj dalej</button>
+      </div>
+    </section>
+
+    <!-- Ekran dyskusji -->
+    <section id="screen-discuss" class="screen">
+      <h2>🗣️ Dyskusja</h2>
+      <p>Każdy po kolei mówi <b>jedno słowo</b> opisujące hasło.</p>
+      <div class="card">
+        <p>Kategoria:</p>
+        <h3 id="discuss-category">—</h3>
+      </div>
+      <div class="timer-card">
+        <p>Czas dyskusji</p>
+        <h2 id="timer-display">02:00</h2>
+        <div class="timer-buttons">
+          <button id="timer-start" class="btn-secondary">▶ Start</button>
+          <button id="timer-reset" class="btn-secondary">↻ Reset</button>
+        </div>
+      </div>
+      <button id="vote-btn" class="btn-primary">🗳️ Głosujcie!</button>
+    </section>
+
+    <!-- Ekran wyniku -->
+    <section id="screen-result" class="screen">
+      <h2>🎬 Koniec rundy</h2>
+      <div class="result-card">
+        <p>Hasło to było:</p>
+        <h2 id="result-word"></h2>
+        <p class="card-hint" id="result-hint"></p>
+      </div>
+      <div class="result-card">
+        <p>Impostorem był:</p>
+        <h2 id="result-impostor"></h2>
+      </div>
+      <button id="play-again-btn" class="btn-primary">🔁 Następna runda</button>
+      <button id="home-btn" class="btn-secondary">🏠 Menu główne</button>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
