@@ -298,18 +298,22 @@ const CATEGORIES = {
 };
 
 // =====================================================
-//  Stan gry
+//  Stan
 // =====================================================
 const state = {
-  players: 4,
+  players: ["Gracz 1", "Gracz 2", "Gracz 3", "Gracz 4"],
   impostors: 1,
-  category: "Zwierzęta",
+  category: "__random",
   showHint: true,
-  current: 0,
   roles: [],
+  seen: [],
   word: null,
-  hint: null
+  hint: null,
+  activeCategory: null,
+  currentPick: -1
 };
+
+const STORAGE_KEY = "impostor.players";
 
 // =====================================================
 //  Pomocnicze
@@ -330,19 +334,76 @@ const shuffle = (arr) => {
 };
 
 // =====================================================
+//  Lista uczestników (setup)
+// =====================================================
+function renderPlayersList() {
+  const list = $("players-list");
+  list.innerHTML = "";
+  state.players.forEach((name, idx) => {
+    const row = document.createElement("div");
+    row.className = "player-row";
+    row.innerHTML = `
+      <input type="text" value="${escapeHtml(name)}" data-idx="${idx}" placeholder="Imię gracza" maxlength="20" />
+      <button class="btn-remove" data-remove="${idx}" aria-label="Usuń">✕</button>
+    `;
+    list.appendChild(row);
+  });
+
+  list.querySelectorAll('input[type="text"]').forEach(inp => {
+    inp.oninput = (e) => {
+      const i = +e.target.dataset.idx;
+      state.players[i] = e.target.value;
+      savePlayers();
+    };
+  });
+  list.querySelectorAll(".btn-remove").forEach(btn => {
+    btn.onclick = (e) => {
+      const i = +e.currentTarget.dataset.remove;
+      if (state.players.length <= 3) return;
+      state.players.splice(i, 1);
+      clampImpostors();
+      renderPlayersList();
+      savePlayers();
+    };
+  });
+}
+
+function addPlayer() {
+  if (state.players.length >= 12) return;
+  state.players.push(`Gracz ${state.players.length + 1}`);
+  renderPlayersList();
+  savePlayers();
+}
+
+function savePlayers() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.players)); } catch {}
+}
+
+function loadPlayers() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const arr = JSON.parse(raw);
+      if (Array.isArray(arr) && arr.length >= 3) state.players = arr;
+    }
+  } catch {}
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+// =====================================================
 //  Setup ekran
 // =====================================================
 function initSetup() {
-  // Wypełnij kategorie
   const select = $("category-select");
   select.innerHTML = '<option value="__random">🎲 Losowa</option>' +
     Object.keys(CATEGORIES).map(c => `<option value="${c}">${c}</option>`).join("");
 
-  // Liczba graczy
-  $("players-minus").onclick = () => updatePlayers(-1);
-  $("players-plus").onclick  = () => updatePlayers(+1);
-  $("imp-minus").onclick     = () => updateImpostors(-1);
-  $("imp-plus").onclick      = () => updateImpostors(+1);
+  $("imp-minus").onclick = () => updateImpostors(-1);
+  $("imp-plus").onclick  = () => updateImpostors(+1);
+  $("add-player-btn").onclick = addPlayer;
 
   $("show-hint").onchange = (e) => state.showHint = e.target.checked;
   select.onchange = (e) => state.category = e.target.value;
@@ -353,25 +414,20 @@ function initSetup() {
 
   $("home-btn").onclick = () => showScreen("screen-setup");
   $("play-again-btn").onclick = startGame;
-  $("vote-btn").onclick = endRound;
   $("reveal-btn").onclick = revealCard;
-  $("hide-btn").onclick = nextPlayer;
-
-  initTimer();
+  $("hide-btn").onclick = afterCard;
+  $("back-to-setup-btn").onclick = () => showScreen("screen-setup");
+  $("reveal-impostor-btn").onclick = endRound;
 }
 
-function updatePlayers(delta) {
-  state.players = Math.max(3, Math.min(12, state.players + delta));
-  $("players-count").textContent = state.players;
-  // Impostor max = players - 2
-  if (state.impostors > state.players - 2) {
-    state.impostors = state.players - 2;
-    $("imp-count").textContent = state.impostors;
-  }
+function clampImpostors() {
+  const max = Math.max(1, state.players.length - 2);
+  if (state.impostors > max) state.impostors = max;
+  $("imp-count").textContent = state.impostors;
 }
 
 function updateImpostors(delta) {
-  const max = Math.max(1, state.players - 2);
+  const max = Math.max(1, state.players.length - 2);
   state.impostors = Math.max(1, Math.min(max, state.impostors + delta));
   $("imp-count").textContent = state.impostors;
 }
@@ -380,7 +436,14 @@ function updateImpostors(delta) {
 //  Logika gry
 // =====================================================
 function startGame() {
-  // Wybierz kategorię
+  // Wyczyść puste imiona, zastąp domyślnymi jeśli puste
+  state.players = state.players.map((n, i) => (n && n.trim()) || `Gracz ${i + 1}`);
+  if (state.players.length < 3) {
+    alert("Potrzebujesz minimum 3 graczy.");
+    return;
+  }
+
+  // Kategoria
   let cat = state.category;
   if (cat === "__random") {
     const keys = Object.keys(CATEGORIES);
@@ -388,34 +451,57 @@ function startGame() {
   }
   state.activeCategory = cat;
 
-  // Wybierz hasło
+  // Hasło
   const list = CATEGORIES[cat];
   const item = list[randInt(list.length)];
   state.word = item.word;
   state.hint = item.hint;
 
-  // Przydziel role
-  const roles = new Array(state.players).fill("crew");
-  const impostorIdx = shuffle([...Array(state.players).keys()]).slice(0, state.impostors);
+  // Role
+  const roles = new Array(state.players.length).fill("crew");
+  const impostorIdx = shuffle([...Array(state.players.length).keys()]).slice(0, state.impostors);
   impostorIdx.forEach(i => roles[i] = "impostor");
   state.roles = roles;
-  state.current = 0;
+  state.seen = new Array(state.players.length).fill(false);
+  state.currentPick = -1;
 
-  showCardCover();
-  showScreen("screen-card");
+  renderPickList();
+  showScreen("screen-pick");
 }
 
-function showCardCover() {
-  $("card-player-name").textContent = `Gracz ${state.current + 1}`;
+function renderPickList() {
+  const list = $("pick-list");
+  list.innerHTML = "";
+  state.players.forEach((name, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "pick-btn" + (state.seen[idx] ? " seen" : "");
+    btn.disabled = state.seen[idx];
+    btn.innerHTML = `
+      <span class="pick-name">${escapeHtml(name)}</span>
+      <span class="pick-status">${state.seen[idx] ? "✅ Widział" : "👉 Kliknij"}</span>
+    `;
+    btn.onclick = () => pickPlayer(idx);
+    list.appendChild(btn);
+  });
+
+  const allSeen = state.seen.every(Boolean);
+  $("reveal-impostor-btn").classList.toggle("hidden", !allSeen);
+}
+
+function pickPlayer(idx) {
+  if (state.seen[idx]) return;
+  state.currentPick = idx;
+  $("card-player-name").textContent = state.players[idx];
   $("card-cover").classList.remove("hidden");
   $("card-reveal").classList.add("hidden");
+  showScreen("screen-card");
 }
 
 function revealCard() {
   $("card-cover").classList.add("hidden");
   $("card-reveal").classList.remove("hidden");
 
-  const role = state.roles[state.current];
+  const role = state.roles[state.currentPick];
   if (role === "impostor") {
     $("card-word-box").classList.add("hidden");
     $("card-impostor").classList.remove("hidden");
@@ -424,85 +510,39 @@ function revealCard() {
     $("card-word-box").classList.remove("hidden");
     $("card-impostor").classList.add("hidden");
     $("card-word").textContent = state.word;
-    $("card-hint").textContent = state.showHint ? state.hint : "";
-    $("card-hint").style.display = state.showHint ? "block" : "none";
+    const hintEl = $("card-hint");
+    if (state.showHint) {
+      hintEl.textContent = state.hint;
+      hintEl.style.display = "block";
+    } else {
+      hintEl.style.display = "none";
+    }
   }
 }
 
-function nextPlayer() {
-  state.current++;
-  if (state.current >= state.players) {
-    // Wszyscy obejrzeli - przejdź do dyskusji
-    $("discuss-category").textContent = state.activeCategory;
-    resetTimer();
-    showScreen("screen-discuss");
-  } else {
-    showCardCover();
-  }
+function afterCard() {
+  state.seen[state.currentPick] = true;
+  state.currentPick = -1;
+  renderPickList();
+  showScreen("screen-pick");
 }
 
 function endRound() {
-  stopTimer();
   $("result-word").textContent = state.word;
   $("result-hint").textContent = state.hint;
-  const impIndices = state.roles
-    .map((r, i) => r === "impostor" ? `Gracz ${i + 1}` : null)
+  const impNames = state.roles
+    .map((r, i) => r === "impostor" ? state.players[i] : null)
     .filter(Boolean);
-  $("result-impostor").textContent = impIndices.join(", ");
+  $("result-impostor").textContent = impNames.join(", ");
   showScreen("screen-result");
-}
-
-// =====================================================
-//  Timer
-// =====================================================
-let timerInterval = null;
-let timerSeconds = 120;
-
-function initTimer() {
-  $("timer-start").onclick = toggleTimer;
-  $("timer-reset").onclick = resetTimer;
-}
-
-function updateTimerDisplay() {
-  const m = String(Math.floor(timerSeconds / 60)).padStart(2, "0");
-  const s = String(timerSeconds % 60).padStart(2, "0");
-  $("timer-display").textContent = `${m}:${s}`;
-}
-
-function toggleTimer() {
-  if (timerInterval) {
-    stopTimer();
-  } else {
-    $("timer-start").textContent = "⏸ Pauza";
-    timerInterval = setInterval(() => {
-      timerSeconds--;
-      updateTimerDisplay();
-      if (timerSeconds <= 0) {
-        stopTimer();
-        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
-      }
-    }, 1000);
-  }
-}
-
-function stopTimer() {
-  if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-  }
-  $("timer-start").textContent = "▶ Start";
-}
-
-function resetTimer() {
-  stopTimer();
-  timerSeconds = 120;
-  updateTimerDisplay();
 }
 
 // =====================================================
 //  Init
 // =====================================================
 document.addEventListener("DOMContentLoaded", () => {
+  loadPlayers();
   initSetup();
-  updateTimerDisplay();
+  renderPlayersList();
+  $("imp-count").textContent = state.impostors;
 });

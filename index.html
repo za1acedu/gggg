@@ -17,13 +17,9 @@
       </header>
 
       <div class="card">
-        <label>Liczba graczy</label>
-        <div class="counter">
-          <button class="btn-circle" id="players-minus">−</button>
-          <span id="players-count">4</span>
-          <button class="btn-circle" id="players-plus">+</button>
-        </div>
-        <p class="hint">Min. 3, maks. 12</p>
+        <label>Uczestnicy</label>
+        <div id="players-list"></div>
+        <button id="add-player-btn" class="btn-secondary">➕ Dodaj uczestnika</button>
       </div>
 
       <div class="card">
@@ -56,20 +52,29 @@
     <section id="screen-rules" class="screen">
       <h2>Jak grać?</h2>
       <ol>
-        <li>Wybierz liczbę graczy i kategorię.</li>
-        <li>Każdy gracz po kolei zagląda do swojej karty (telefon krąży po stole).</li>
-        <li>Gracze widzą hasło i podpowiedź. <b>Impostor</b> nic nie wie — musi zgadywać.</li>
-        <li>Po obejrzeniu kart każdy <b>jednym słowem</b> opisuje hasło.</li>
-        <li>Po rundzie głosujecie: kto jest impostorem?</li>
-        <li>Jeśli wykryjecie szpiega — wygrywacie. Jeśli nie — impostor zwycięża!</li>
+        <li>Wpisz imiona uczestników i wybierz kategorię.</li>
+        <li>Na ekranie wyboru klikaj kolejno w imię gracza i podaj mu telefon.</li>
+        <li>Gracz odkrywa kartę: widzi hasło i podpowiedź. <b>Impostor</b> nie wie nic — musi zgadywać.</li>
+        <li>Po obejrzeniu ukrywa kartę i oddaje telefon dalej.</li>
+        <li>Gdy wszyscy zobaczą — każdy mówi <b>jednym słowem</b> opisuje hasło.</li>
+        <li>Głosujecie kto jest impostorem. Jeśli wykryjecie szpiega — wygrywacie!</li>
       </ol>
       <button class="btn-primary" data-back>← Wróć</button>
+    </section>
+
+    <!-- Ekran wyboru gracza -->
+    <section id="screen-pick" class="screen">
+      <h2>Kto bierze telefon?</h2>
+      <p class="subtitle">Klikaj kolejno w imiona i podawaj telefon</p>
+      <div id="pick-list" class="pick-list"></div>
+      <button id="reveal-impostor-btn" class="btn-primary hidden">🔍 Pokaż kto był impostorem</button>
+      <button id="back-to-setup-btn" class="btn-secondary">← Anuluj</button>
     </section>
 
     <!-- Ekran karty gracza -->
     <section id="screen-card" class="screen">
       <div id="card-cover" class="card-cover">
-        <h2 id="card-player-name">Gracz 1</h2>
+        <h2 id="card-player-name">Gracz</h2>
         <p>Weź telefon i naciśnij, aby zobaczyć swoją kartę</p>
         <button id="reveal-btn" class="btn-primary">🔓 Pokaż kartę</button>
       </div>
@@ -88,27 +93,8 @@
           <p class="card-hint">Kategoria: <b id="impostor-category"></b></p>
         </div>
 
-        <button id="hide-btn" class="btn-primary">✅ Schowaj i podaj dalej</button>
+        <button id="hide-btn" class="btn-primary">✅ Schowaj i oddaj telefon</button>
       </div>
-    </section>
-
-    <!-- Ekran dyskusji -->
-    <section id="screen-discuss" class="screen">
-      <h2>🗣️ Dyskusja</h2>
-      <p>Każdy po kolei mówi <b>jedno słowo</b> opisujące hasło.</p>
-      <div class="card">
-        <p>Kategoria:</p>
-        <h3 id="discuss-category">—</h3>
-      </div>
-      <div class="timer-card">
-        <p>Czas dyskusji</p>
-        <h2 id="timer-display">02:00</h2>
-        <div class="timer-buttons">
-          <button id="timer-start" class="btn-secondary">▶ Start</button>
-          <button id="timer-reset" class="btn-secondary">↻ Reset</button>
-        </div>
-      </div>
-      <button id="vote-btn" class="btn-primary">🗳️ Głosujcie!</button>
     </section>
 
     <!-- Ekran wyniku -->

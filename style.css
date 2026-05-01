@@ -259,26 +259,67 @@ ol li { margin-bottom: 8px; }
 
 .hidden { display: none !important; }
 
-.timer-card {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 22px;
-  text-align: center;
+.player-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.player-row input[type="text"] {
+  flex: 1;
+  background: var(--bg-1);
+  color: var(--text);
+  border: 1px solid #3a3a5c;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+}
+.btn-remove {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #3a3a5c;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.btn-remove:active { transform: scale(0.92); }
+
+.pick-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-.timer-card h2 {
-  font-size: 3rem;
-  font-variant-numeric: tabular-nums;
-  font-weight: 800;
-}
-.timer-buttons {
-  display: flex;
   gap: 10px;
-  justify-content: center;
+  margin: 12px 0;
 }
-.timer-buttons button { flex: 1; }
+.pick-btn {
+  background: var(--card);
+  border: 2px solid transparent;
+  color: var(--text);
+  padding: 18px 20px;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  transition: transform 0.1s, border-color 0.2s, opacity 0.2s;
+}
+.pick-btn:not(:disabled):active { transform: scale(0.98); }
+.pick-btn:not(:disabled):hover { border-color: var(--accent-2); }
+.pick-btn.seen {
+  opacity: 0.45;
+  cursor: default;
+}
+.pick-name { flex: 1; }
+.pick-status {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.pick-btn.seen .pick-status { color: var(--good); }
 
 .result-card {
   background: var(--card);
