@@ -4,8 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#0f0f1e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Impostor" />
+  <meta name="description" content="Gra imprezowa w stylu szpiega — znajdź impostora!" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon-192.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-192.svg" />
   <title>Impostor — Gra Imprezowa</title>
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
   <div id="app">
@@ -19,7 +26,7 @@
       <div class="card">
         <label>Uczestnicy</label>
         <div id="players-list"></div>
-        <button id="add-player-btn" class="btn-secondary">➕ Dodaj uczestnika</button>
+        <button id="add-player-btn" class="btn-secondary">+ Dodaj uczestnika</button>
       </div>
 
       <div class="card">
@@ -33,7 +40,7 @@
 
       <div class="card">
         <label>Kategoria</label>
-        <select id="category-select"></select>
+        <div id="category-grid" class="category-grid"></div>
       </div>
 
       <button id="start-btn" class="btn-primary">▶ Rozpocznij grę</button>
@@ -76,8 +83,9 @@
 
       <div id="card-reveal" class="card-reveal hidden">
         <div id="card-word-box" class="card-word-box">
-          <p class="card-label">Hasło</p>
+          <p class="card-label">Twoje hasło</p>
           <h2 id="card-word"></h2>
+          <p class="card-hint" id="card-hint"></p>
         </div>
 
         <div id="card-impostor" class="card-impostor hidden">
@@ -99,7 +107,7 @@
         <h2 id="result-word"></h2>
         <p class="card-hint" id="result-hint"></p>
       </div>
-      <div class="result-card">
+      <div class="result-card impostor-result">
         <p>Impostorem był:</p>
         <h2 id="result-impostor"></h2>
       </div>
@@ -108,6 +116,6 @@
     </section>
   </div>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

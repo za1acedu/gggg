@@ -1,0 +1,26 @@
+{
+  "name": "Impostor — Gra Imprezowa",
+  "short_name": "Impostor",
+  "description": "Gra imprezowa w stylu szpiega — znajdź impostora!",
+  "lang": "pl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0f0f1e",
+  "background_color": "#0f0f1e",
+  "icons": [
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

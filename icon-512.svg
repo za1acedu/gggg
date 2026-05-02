@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a3e"/>
+      <stop offset="100%" stop-color="#0f0f1e"/>
+    </linearGradient>
+    <linearGradient id="mask" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0c4ff"/>
+      <stop offset="100%" stop-color="#b388ff"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Background rounded square -->
+  <rect width="512" height="512" rx="100" ry="100" fill="url(#bg)"/>
+  <!-- Outer glow border -->
+  <rect width="512" height="512" rx="100" ry="100" fill="none" stroke="#7c4dff" stroke-width="4" opacity="0.4"/>
+  <!-- Theater/spy mask -->
+  <g transform="translate(256,235)">
+    <!-- Mask shape -->
+    <path d="M-138,-53 C-138,-112 -80,-138 0,-138 C80,-138 138,-112 138,-53 C138,13 107,75 75,101 C53,117 27,123 0,107 C-27,123 -53,117 -75,101 C-107,75 -138,13 -138,-53Z" fill="url(#mask)" opacity="0.95"/>
+    <!-- Left eye hole -->
+    <ellipse cx="-58" cy="-32" rx="37" ry="27" fill="#0f0f1e"/>
+    <!-- Right eye hole -->
+    <ellipse cx="58" cy="-32" rx="37" ry="27" fill="#0f0f1e"/>
+    <!-- Left eye glint -->
+    <ellipse cx="-58" cy="-32" rx="33" ry="23" fill="none" stroke="#7c4dff" stroke-width="3" opacity="0.6" filter="url(#glow)"/>
+    <!-- Right eye glint -->
+    <ellipse cx="58" cy="-32" rx="33" ry="23" fill="none" stroke="#7c4dff" stroke-width="3" opacity="0.6" filter="url(#glow)"/>
+    <!-- Nose ridge -->
+    <path d="M0,-21 L0,27" stroke="#9a6ed8" stroke-width="3" opacity="0.5" stroke-linecap="round"/>
+    <!-- Subtle brow lines -->
+    <path d="M-96,-59 C-80,-80 -37,-80 -21,-59" fill="none" stroke="#d1a8ff" stroke-width="3" opacity="0.3"/>
+    <path d="M96,-59 C80,-80 37,-80 21,-59" fill="none" stroke="#d1a8ff" stroke-width="3" opacity="0.3"/>
+    <!-- Mask edge highlight -->
+    <path d="M-138,-53 C-138,-112 -80,-138 0,-138 C80,-138 138,-112 138,-53" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.1"/>
+  </g>
+  <!-- Question mark (impostor element) -->
+  <g transform="translate(380,400)">
+    <text font-family="Arial, sans-serif" font-size="96" font-weight="bold" fill="#7c4dff" text-anchor="middle" opacity="0.8" filter="url(#glow)">?</text>
+  </g>
+</svg>

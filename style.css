@@ -9,12 +9,14 @@
   --bg-1: #0f0f1e;
   --bg-2: #1a1a2e;
   --card: #232342;
+  --card-hover: #2c2c50;
   --accent: #ff5555;
   --accent-2: #6a4cff;
   --text: #f4f4ff;
   --muted: #9b9bbb;
   --good: #2ecc71;
   --warn: #f39c12;
+  --radius: 16px;
 }
 
 html, body {
@@ -26,14 +28,17 @@ body {
   background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
   color: var(--text);
   min-height: 100vh;
+  min-height: 100dvh;
   overscroll-behavior: contain;
+  -webkit-font-smoothing: antialiased;
 }
 
 #app {
   max-width: 480px;
   margin: 0 auto;
-  padding: 24px 18px 40px;
+  padding: 24px 18px calc(env(safe-area-inset-bottom, 0px) + 40px);
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -77,7 +82,7 @@ h3 {
 
 .card {
   background: var(--card);
-  border-radius: 16px;
+  border-radius: var(--radius);
   padding: 18px;
   display: flex;
   flex-direction: column;
@@ -129,6 +134,54 @@ h3 {
 }
 .btn-circle:active { transform: scale(0.92); }
 
+/* ===== Category grid ===== */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.cat-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 4px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: var(--bg-1);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.1s, border-color 0.2s, background 0.2s;
+  min-height: 72px;
+}
+.cat-tile:active { transform: scale(0.95); }
+.cat-tile:hover { background: var(--card-hover); }
+
+.cat-tile.selected {
+  border-color: var(--accent-2);
+  background: rgba(106, 76, 255, 0.15);
+  box-shadow: 0 0 12px rgba(106, 76, 255, 0.25);
+}
+
+.cat-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.cat-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+@media (max-width: 340px) {
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===== Forms ===== */
 select {
   background: var(--bg-1);
   color: var(--text);
@@ -163,6 +216,7 @@ input[type="checkbox"]::before {
 }
 input[type="checkbox"]:checked::before { transform: translateX(22px); }
 
+/* ===== Buttons ===== */
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: white;
@@ -202,12 +256,13 @@ footer {
 
 ol {
   background: var(--card);
-  border-radius: 16px;
+  border-radius: var(--radius);
   padding: 22px 22px 22px 44px;
   line-height: 1.7;
 }
 ol li { margin-bottom: 8px; }
 
+/* ===== Card screens ===== */
 .card-cover, .card-reveal {
   flex: 1;
   display: flex;
@@ -218,6 +273,7 @@ ol li { margin-bottom: 8px; }
   gap: 22px;
   padding: 30px 12px;
   min-height: 70vh;
+  min-height: 70dvh;
 }
 .card-cover h2 { font-size: 2rem; }
 .card-cover p { color: var(--muted); font-size: 1.05rem; max-width: 320px; }
@@ -259,6 +315,7 @@ ol li { margin-bottom: 8px; }
 
 .hidden { display: none !important; }
 
+/* ===== Players list ===== */
 .player-row {
   display: flex;
   gap: 8px;
@@ -286,6 +343,7 @@ ol li { margin-bottom: 8px; }
 }
 .btn-remove:active { transform: scale(0.92); }
 
+/* ===== Pick list ===== */
 .pick-list {
   display: flex;
   flex-direction: column;
@@ -321,9 +379,10 @@ ol li { margin-bottom: 8px; }
 }
 .pick-btn.seen .pick-status { color: var(--good); }
 
+/* ===== Result ===== */
 .result-card {
   background: var(--card);
-  border-radius: 16px;
+  border-radius: var(--radius);
   padding: 22px;
   text-align: center;
   display: flex;
@@ -334,3 +393,17 @@ ol li { margin-bottom: 8px; }
   font-size: 2rem;
   color: var(--accent);
 }
+.impostor-result {
+  background: linear-gradient(135deg, #3a1a2e, #1a1a3e);
+  border: 1px solid rgba(255, 85, 85, 0.3);
+}
+
+/* ===== PWA standalone tweaks ===== */
+@media (display-mode: standalone) {
+  body { padding-top: env(safe-area-inset-top, 0px); }
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a3a5c; border-radius: 4px; }
