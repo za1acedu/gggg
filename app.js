@@ -1,230 +1,230 @@
 // =====================================================
 //  IMPOSTOR — baza haseł z podpowiedziami
-//  Każde hasło: { w: "słowo", h: "podpowiedź" }
+//  Podpowiedź: luźne skojarzenie, NIE synonim/tłumaczenie
 // =====================================================
 const CATEGORIES = {
   "Zwierzęta": {
     icon: "🐾",
     words: [
-      { w: "Słoń", h: "kieł" }, { w: "Pingwin", h: "smoking" }, { w: "Krokodyl", h: "bagno" },
-      { w: "Żyrafa", h: "szyja" }, { w: "Hipopotam", h: "błoto" }, { w: "Jeż", h: "kolce" },
-      { w: "Sowa", h: "mądrość" }, { w: "Kameleon", h: "barwa" }, { w: "Delfin", h: "skok" },
-      { w: "Wilk", h: "wataha" }, { w: "Pszczoła", h: "miód" }, { w: "Mrówka", h: "siła" },
-      { w: "Lew", h: "grzywa" }, { w: "Tygrys", h: "pasy" }, { w: "Kangur", h: "torba" },
-      { w: "Wieloryb", h: "głębina" }, { w: "Nietoperz", h: "echolokacja" }, { w: "Pająk", h: "sieć" },
-      { w: "Goryl", h: "srebrny" }, { w: "Foka", h: "plaża" }, { w: "Borsuk", h: "nora" },
-      { w: "Lis", h: "spryt" }, { w: "Wąż", h: "jad" }, { w: "Sokół", h: "lot" },
-      { w: "Pantera", h: "czerń" }, { w: "Niedźwiedź", h: "gawra" }
+      { w: "Słoń", h: "pamięć" }, { w: "Pingwin", h: "smoking" }, { w: "Krokodyl", h: "łezka" },
+      { w: "Żyrafa", h: "akacja" }, { w: "Hipopotam", h: "rzeczny" }, { w: "Jeż", h: "jabłko" },
+      { w: "Sowa", h: "Hogwart" }, { w: "Kameleon", h: "tło" }, { w: "Delfin", h: "show" },
+      { w: "Wilk", h: "bajka" }, { w: "Pszczoła", h: "taniec" }, { w: "Mrówka", h: "piknik" },
+      { w: "Lew", h: "Narnia" }, { w: "Tygrys", h: "bengal" }, { w: "Kangur", h: "boks" },
+      { w: "Wieloryb", h: "Jonasz" }, { w: "Nietoperz", h: "strych" }, { w: "Pająk", h: "kąt" },
+      { w: "Goryl", h: "banan" }, { w: "Foka", h: "klaśnięcie" }, { w: "Borsuk", h: "nornik" },
+      { w: "Lis", h: "Mały Książę" }, { w: "Wąż", h: "Eden" }, { w: "Sokół", h: "pikowanie" },
+      { w: "Pantera", h: "Wakanda" }, { w: "Niedźwiedź", h: "Wojtek" }
     ]
   },
 
   "Jedzenie": {
     icon: "🍕",
     words: [
-      { w: "Pizza", h: "Włochy" }, { w: "Pierogi", h: "lepienie" }, { w: "Sushi", h: "ryż" },
-      { w: "Hamburger", h: "bułka" }, { w: "Kebab", h: "nocny" }, { w: "Ramen", h: "bulion" },
-      { w: "Spaghetti", h: "sos" }, { w: "Schabowy", h: "tłuczek" }, { w: "Bigos", h: "kapusta" },
-      { w: "Naleśniki", h: "patelnia" }, { w: "Lody", h: "wafelek" }, { w: "Sernik", h: "twaróg" },
-      { w: "Czekolada", h: "kakao" }, { w: "Tiramisu", h: "kawa" }, { w: "Frytki", h: "ketchup" },
-      { w: "Taco", h: "Meksyk" }, { w: "Croissant", h: "masło" }, { w: "Gołąbki", h: "zawijanie" },
-      { w: "Pączek", h: "tłusty" }, { w: "Zapiekanka", h: "Kazimierz" }, { w: "Burrito", h: "tortilla" },
-      { w: "Pulpety", h: "mielone" }, { w: "Żurek", h: "zakwas" }, { w: "Rosół", h: "niedziela" },
-      { w: "Sałatka", h: "dieta" }, { w: "Kanapka", h: "chleb" }
+      { w: "Pizza", h: "trójkąt" }, { w: "Pierogi", h: "wigilia" }, { w: "Sushi", h: "taśma" },
+      { w: "Hamburger", h: "drive-thru" }, { w: "Kebab", h: "nocny" }, { w: "Ramen", h: "anime" },
+      { w: "Spaghetti", h: "western" }, { w: "Schabowy", h: "tłuczek" }, { w: "Bigos", h: "myśliwski" },
+      { w: "Naleśniki", h: "nadzienie" }, { w: "Lody", h: "kulka" }, { w: "Sernik", h: "Wiedeń" },
+      { w: "Czekolada", h: "grzech" }, { w: "Tiramisu", h: "warstwa" }, { w: "Frytki", h: "Belgia" },
+      { w: "Taco", h: "wtorek" }, { w: "Croissant", h: "poranek" }, { w: "Gołąbki", h: "kapuściane" },
+      { w: "Pączek", h: "czwartek" }, { w: "Zapiekanka", h: "Kazimierz" }, { w: "Burrito", h: "zawinięty" },
+      { w: "Pulpety", h: "Szwecja" }, { w: "Żurek", h: "Wielkanoc" }, { w: "Rosół", h: "niedziela" },
+      { w: "Sałatka", h: "miska" }, { w: "Kanapka", h: "przerwa" }
     ]
   },
 
   "Sport": {
     icon: "⚽",
     words: [
-      { w: "Tenis", h: "rakieta" }, { w: "Siatkówka", h: "siatka" }, { w: "Pływanie", h: "basen" },
-      { w: "Boks", h: "ring" }, { w: "Szachy", h: "mat" }, { w: "Curling", h: "kamień" },
-      { w: "Łyżwiarstwo", h: "pirouette" }, { w: "Narciarstwo", h: "stok" }, { w: "Hokej", h: "krążek" },
-      { w: "Golf", h: "dołek" }, { w: "Maraton", h: "dystans" }, { w: "Snowboard", h: "deska" },
-      { w: "Surfing", h: "fala" }, { w: "Łucznictwo", h: "tarcza" }, { w: "Judo", h: "mata" },
-      { w: "Karate", h: "pas" }, { w: "Koszykówka", h: "wsad" }, { w: "Futbol", h: "touchdown" },
-      { w: "Bilard", h: "kij" }, { w: "Rugby", h: "młyn" }, { w: "Krykiet", h: "wicket" },
-      { w: "Wioślarstwo", h: "wiosło" }, { w: "Lekkoatletyka", h: "bieżnia" },
-      { w: "Kolarstwo", h: "peleton" }, { w: "Zapasy", h: "chwyt" }, { w: "Szermierka", h: "touché" }
+      { w: "Tenis", h: "zero" }, { w: "Siatkówka", h: "plażowa" }, { w: "Pływanie", h: "czepek" },
+      { w: "Boks", h: "rękawica" }, { w: "Szachy", h: "wieża" }, { w: "Curling", h: "lód" },
+      { w: "Łyżwiarstwo", h: "pirouette" }, { w: "Narciarstwo", h: "alpejskie" }, { w: "Hokej", h: "Kanada" },
+      { w: "Golf", h: "osiemnastka" }, { w: "Maraton", h: "Ateny" }, { w: "Snowboard", h: "halfpipe" },
+      { w: "Surfing", h: "Hawaje" }, { w: "Łucznictwo", h: "Robin" }, { w: "Judo", h: "Japonia" },
+      { w: "Karate", h: "cegła" }, { w: "Koszykówka", h: "Jordan" }, { w: "Futbol", h: "przyłbica" },
+      { w: "Bilard", h: "trójkąt" }, { w: "Rugby", h: "jajko" }, { w: "Krykiet", h: "herbata" },
+      { w: "Wioślarstwo", h: "regaty" }, { w: "Lekkoatletyka", h: "Olimpiada" },
+      { w: "Kolarstwo", h: "Francja" }, { w: "Zapasy", h: "Turcja" }, { w: "Szermierka", h: "muszka" }
     ]
   },
 
   "Kraje": {
     icon: "🌍",
     words: [
-      { w: "Polska", h: "orzeł" }, { w: "Japonia", h: "sakura" }, { w: "Brazylia", h: "karnawał" },
-      { w: "Egipt", h: "piramida" }, { w: "Włochy", h: "makaron" }, { w: "Francja", h: "wieża" },
-      { w: "Hiszpania", h: "corrida" }, { w: "Grecja", h: "Akropol" }, { w: "Niemcy", h: "piwo" },
-      { w: "Australia", h: "koala" }, { w: "Indie", h: "Ganges" }, { w: "Meksyk", h: "sombrero" },
-      { w: "Norwegia", h: "fiordy" }, { w: "Kanada", h: "klon" }, { w: "Chiny", h: "mur" },
-      { w: "Islandia", h: "gejzer" }, { w: "Tajlandia", h: "świątynia" }, { w: "Maroko", h: "bazar" },
-      { w: "Portugalia", h: "azulejo" }, { w: "Turcja", h: "baklawa" }, { w: "Szwecja", h: "IKEA" },
-      { w: "Holandia", h: "tulipan" }, { w: "Argentyna", h: "tango" }, { w: "Wietnam", h: "pho" },
-      { w: "Kuba", h: "cygaro" }, { w: "Kenia", h: "safari" }
+      { w: "Polska", h: "barszcz" }, { w: "Japonia", h: "czerń" }, { w: "Brazylia", h: "piątka" },
+      { w: "Egipt", h: "sfinks" }, { w: "Włochy", h: "Vespa" }, { w: "Francja", h: "rewolucja" },
+      { w: "Hiszpania", h: "siesta" }, { w: "Grecja", h: "toga" }, { w: "Niemcy", h: "autostrada" },
+      { w: "Australia", h: "bumerang" }, { w: "Indie", h: "przyprawy" }, { w: "Meksyk", h: "kaktus" },
+      { w: "Norwegia", h: "ropa" }, { w: "Kanada", h: "łoś" }, { w: "Chiny", h: "jedwab" },
+      { w: "Islandia", h: "gejzer" }, { w: "Tajlandia", h: "uśmiech" }, { w: "Maroko", h: "mięta" },
+      { w: "Portugalia", h: "bacalhau" }, { w: "Turcja", h: "hamam" }, { w: "Szwecja", h: "meble" },
+      { w: "Holandia", h: "rower" }, { w: "Argentyna", h: "Messi" }, { w: "Wietnam", h: "motor" },
+      { w: "Kuba", h: "oldtimer" }, { w: "Kenia", h: "maraton" }
     ]
   },
 
   "Zawody": {
     icon: "👷",
     words: [
-      { w: "Lekarz", h: "recepta" }, { w: "Strażak", h: "wóz" }, { w: "Policjant", h: "odznaka" },
-      { w: "Nauczyciel", h: "tablica" }, { w: "Piekarz", h: "drożdże" }, { w: "Pilot", h: "kokpit" },
-      { w: "Kucharz", h: "przepis" }, { w: "Architekt", h: "projekt" }, { w: "Programista", h: "bug" },
-      { w: "Fryzjer", h: "nożyczki" }, { w: "Mechanik", h: "klucz" }, { w: "Ogrodnik", h: "rabata" },
-      { w: "Listonosz", h: "paczka" }, { w: "Aktor", h: "scena" }, { w: "Dentysta", h: "borowanie" },
-      { w: "Adwokat", h: "toga" }, { w: "Weterynarz", h: "łapa" }, { w: "Astronauta", h: "orbita" },
-      { w: "Murarz", h: "cegła" }, { w: "Stolarz", h: "hebel" }, { w: "Hydraulik", h: "rura" },
-      { w: "Elektryk", h: "kabel" }, { w: "Sędzia", h: "wyrok" }, { w: "Polityk", h: "debata" },
-      { w: "Dziennikarz", h: "artykuł" }, { w: "Krawiec", h: "igła" }
+      { w: "Lekarz", h: "biały" }, { w: "Strażak", h: "drabina" }, { w: "Policjant", h: "patrol" },
+      { w: "Nauczyciel", h: "wrzesień" }, { w: "Piekarz", h: "świt" }, { w: "Pilot", h: "turbulencja" },
+      { w: "Kucharz", h: "czapka" }, { w: "Architekt", h: "makieta" }, { w: "Programista", h: "kawa" },
+      { w: "Fryzjer", h: "fotel" }, { w: "Mechanik", h: "smар" }, { w: "Ogrodnik", h: "konewka" },
+      { w: "Listonosz", h: "rower" }, { w: "Aktor", h: "Oscar" }, { w: "Dentysta", h: "fotel" },
+      { w: "Adwokat", h: "toga" }, { w: "Weterynarz", h: "kociak" }, { w: "Astronauta", h: "cisza" },
+      { w: "Murarz", h: "kielnia" }, { w: "Stolarz", h: "trociny" }, { w: "Hydraulik", h: "Mario" },
+      { w: "Elektryk", h: "bezpiecznik" }, { w: "Sędzia", h: "gwizdek" }, { w: "Polityk", h: "krawat" },
+      { w: "Dziennikarz", h: "deadline" }, { w: "Krawiec", h: "miarka" }
     ]
   },
 
   "Owoce i warzywa": {
     icon: "🍎",
     words: [
-      { w: "Banan", h: "skórka" }, { w: "Jabłko", h: "sad" }, { w: "Truskawka", h: "polana" },
-      { w: "Arbuz", h: "pestka" }, { w: "Ananas", h: "tropik" }, { w: "Awokado", h: "guacamole" },
-      { w: "Marchewka", h: "królik" }, { w: "Ziemniak", h: "pyra" }, { w: "Pomidor", h: "keczup" },
-      { w: "Ogórek", h: "kiszony" }, { w: "Brokuł", h: "różyczka" }, { w: "Kiwi", h: "włochaty" },
-      { w: "Mango", h: "smoothie" }, { w: "Papryka", h: "strąk" }, { w: "Granat", h: "ziarnka" },
-      { w: "Cytryna", h: "kwaśna" }, { w: "Bakłażan", h: "fiolet" }, { w: "Czosnek", h: "wampir" },
-      { w: "Cebula", h: "łzy" }, { w: "Kalafior", h: "biały" }, { w: "Sałata", h: "liść" },
-      { w: "Rzodkiewka", h: "chrupka" }, { w: "Brzoskwinia", h: "meszek" }, { w: "Wiśnia", h: "kompot" },
-      { w: "Śliwka", h: "powidła" }, { w: "Gruszka", h: "Villiams" }
+      { w: "Banan", h: "minion" }, { w: "Jabłko", h: "Newton" }, { w: "Truskawka", h: "polana" },
+      { w: "Arbuz", h: "plaża" }, { w: "Ananas", h: "hawajska" }, { w: "Awokado", h: "millennial" },
+      { w: "Marchewka", h: "wzrok" }, { w: "Ziemniak", h: "Irlandia" }, { w: "Pomidor", h: "czerwień" },
+      { w: "Ogórek", h: "maseczka" }, { w: "Brokuł", h: "drzewko" }, { w: "Kiwi", h: "Nowa Zelandia" },
+      { w: "Mango", h: "Bollywood" }, { w: "Papryka", h: "strąk" }, { w: "Granat", h: "rubinowy" },
+      { w: "Cytryna", h: "herbata" }, { w: "Bakłażan", h: "emoji" }, { w: "Czosnek", h: "Dracula" },
+      { w: "Cebula", h: "Shrek" }, { w: "Kalafior", h: "mózg" }, { w: "Sałata", h: "Caesar" },
+      { w: "Rzodkiewka", h: "wiosna" }, { w: "Brzoskwinia", h: "aksamit" }, { w: "Wiśnia", h: "likier" },
+      { w: "Śliwka", h: "węgierka" }, { w: "Gruszka", h: "Villiams" }
     ]
   },
 
   "Pojazdy": {
     icon: "🚗",
     words: [
-      { w: "Samolot", h: "turbulencja" }, { w: "Pociąg", h: "wagon" }, { w: "Helikopter", h: "śmigło" },
-      { w: "Statek", h: "kotwica" }, { w: "Motocykl", h: "kask" }, { w: "Rower", h: "pedał" },
-      { w: "Hulajnoga", h: "wynajem" }, { w: "Czołg", h: "pancerz" }, { w: "Tramwaj", h: "szyny" },
-      { w: "Autobus", h: "przystanek" }, { w: "Taksówka", h: "taksometr" }, { w: "Ciężarówka", h: "naczepa" },
-      { w: "Rakieta", h: "kosmos" }, { w: "Karetka", h: "sygnał" }, { w: "Quad", h: "teren" },
-      { w: "Balon", h: "kosz" }, { w: "Kajak", h: "wiosło" }, { w: "Skuter", h: "miasto" },
-      { w: "Limuzyna", h: "gala" }, { w: "Furgonetka", h: "dostawa" }, { w: "Bryczka", h: "koń" },
-      { w: "Sanie", h: "renifer" }, { w: "Łódź", h: "żagiel" }, { w: "Okręt", h: "admirał" },
-      { w: "Trolejbus", h: "pantograf" }, { w: "Wózek", h: "zakupy" }
+      { w: "Samolot", h: "turbulencja" }, { w: "Pociąg", h: "peron" }, { w: "Helikopter", h: "ratunkowy" },
+      { w: "Statek", h: "horyzont" }, { w: "Motocykl", h: "wolność" }, { w: "Rower", h: "Amsterdam" },
+      { w: "Hulajnoga", h: "aplikacja" }, { w: "Czołg", h: "gąsienica" }, { w: "Tramwaj", h: "bilet" },
+      { w: "Autobus", h: "szkolny" }, { w: "Taksówka", h: "żółta" }, { w: "Ciężarówka", h: "autostrada" },
+      { w: "Rakieta", h: "odliczanie" }, { w: "Karetka", h: "syrena" }, { w: "Quad", h: "piasek" },
+      { w: "Balon", h: "Kappadocja" }, { w: "Kajak", h: "spływ" }, { w: "Skuter", h: "Rzym" },
+      { w: "Limuzyna", h: "bal" }, { w: "Furgonetka", h: "hippie" }, { w: "Bryczka", h: "Zakopane" },
+      { w: "Sanie", h: "grudzień" }, { w: "Łódź", h: "wędkowanie" }, { w: "Okręt", h: "flaga" },
+      { w: "Trolejbus", h: "pantograf" }, { w: "Wózek", h: "Biedronka" }
     ]
   },
 
   "Muzyka": {
     icon: "🎵",
     words: [
-      { w: "Gitara", h: "struny" }, { w: "Pianino", h: "klawisze" }, { w: "Skrzypce", h: "smyczek" },
-      { w: "Perkusja", h: "pałeczki" }, { w: "Saksofon", h: "jazz" }, { w: "Trąbka", h: "fanfara" },
-      { w: "Flet", h: "drewno" }, { w: "Akordeon", h: "miech" }, { w: "Harfa", h: "anioł" },
-      { w: "Ukulele", h: "Hawaje" }, { w: "Opera", h: "aria" }, { w: "Rap", h: "flow" },
-      { w: "Karaoke", h: "mikrofon" }, { w: "Chór", h: "głosy" }, { w: "Festiwal", h: "namiot" },
-      { w: "Orkiestra", h: "dyrygent" }, { w: "Klarnet", h: "stroik" }, { w: "Mandolina", h: "Neapol" },
-      { w: "Banjo", h: "country" }, { w: "Kontrabas", h: "pizzicato" }, { w: "Wiolonczela", h: "niska" },
-      { w: "Bęben", h: "rytm" }, { w: "Cymbały", h: "talerz" }, { w: "Reggae", h: "Jamajka" },
-      { w: "Rock", h: "wzmacniacz" }, { w: "Disco", h: "kula" }
+      { w: "Gitara", h: "ognisko" }, { w: "Pianino", h: "salon" }, { w: "Skrzypce", h: "Titanic" },
+      { w: "Perkusja", h: "garaż" }, { w: "Saksofon", h: "dym" }, { w: "Trąbka", h: "Louis" },
+      { w: "Flet", h: "czarodziejski" }, { w: "Akordeon", h: "Paryż" }, { w: "Harfa", h: "chmura" },
+      { w: "Ukulele", h: "plaża" }, { w: "Opera", h: "Phantom" }, { w: "Rap", h: "ulica" },
+      { w: "Karaoke", h: "Japonia" }, { w: "Chór", h: "kościół" }, { w: "Festiwal", h: "Woodstock" },
+      { w: "Orkiestra", h: "filharmonia" }, { w: "Klarnet", h: "Mozart" }, { w: "Mandolina", h: "Neapol" },
+      { w: "Banjo", h: "Appalachy" }, { w: "Kontrabas", h: "pizzicato" }, { w: "Wiolonczela", h: "Bach" },
+      { w: "Bęben", h: "plemienny" }, { w: "Cymbały", h: "talerz" }, { w: "Reggae", h: "relaks" },
+      { w: "Rock", h: "garaż" }, { w: "Disco", h: "Saturday" }
     ]
   },
 
   "Technologia": {
     icon: "💻",
     words: [
-      { w: "Smartfon", h: "ekran" }, { w: "Laptop", h: "przenośny" }, { w: "Drukarka", h: "toner" },
-      { w: "Robot", h: "automat" }, { w: "Dron", h: "loty" }, { w: "Internet", h: "sieć" },
-      { w: "Bluetooth", h: "bezprzewodowy" }, { w: "USB", h: "pendrive" }, { w: "Klawiatura", h: "klik" },
-      { w: "Słuchawki", h: "basy" }, { w: "Mikrofon", h: "nagranie" }, { w: "GPS", h: "nawigacja" },
-      { w: "Smartwatch", h: "nadgarstek" }, { w: "Tablet", h: "rysik" }, { w: "Pendrive", h: "pamięć" },
-      { w: "Router", h: "WiFi" }, { w: "Modem", h: "sygnał" }, { w: "Procesor", h: "rdzeń" },
-      { w: "Monitor", h: "piksele" }, { w: "Aparat", h: "obiektyw" }, { w: "Skaner", h: "skan" },
-      { w: "Konsola", h: "pad" }, { w: "Mysz", h: "kursor" }, { w: "Kamera", h: "streaming" },
-      { w: "Hologram", h: "projekcja" }, { w: "Powerbank", h: "ładowanie" }
+      { w: "Smartfon", h: "kieszeń" }, { w: "Laptop", h: "kawiarnia" }, { w: "Drukarka", h: "papier" },
+      { w: "Robot", h: "fabryka" }, { w: "Dron", h: "paczka" }, { w: "Internet", h: "kawiarnia" },
+      { w: "Bluetooth", h: "wiking" }, { w: "USB", h: "zawsze odwrotnie" }, { w: "Klawiatura", h: "QWERTY" },
+      { w: "Słuchawki", h: "metro" }, { w: "Mikrofon", h: "scena" }, { w: "GPS", h: "satelita" },
+      { w: "Smartwatch", h: "kroki" }, { w: "Tablet", h: "dziecko" }, { w: "Pendrive", h: "zgubiony" },
+      { w: "Router", h: "miganie" }, { w: "Modem", h: "pisk" }, { w: "Procesor", h: "gorący" },
+      { w: "Monitor", h: "biurko" }, { w: "Aparat", h: "wakacje" }, { w: "Skaner", h: "biuro" },
+      { w: "Konsola", h: "kanapa" }, { w: "Mysz", h: "podkładka" }, { w: "Kamera", h: "YouTube" },
+      { w: "Hologram", h: "koncert" }, { w: "Powerbank", h: "lotnisko" }
     ]
   },
 
   "Bajki Disneya": {
     icon: "🏰",
     words: [
-      { w: "Frozen", h: "lód" }, { w: "Aladyn", h: "lampa" }, { w: "Vaiana", h: "ocean" },
-      { w: "Zwierzogród", h: "marchewka" }, { w: "Coco", h: "gitara" }, { w: "Roszpunka", h: "wieża" },
-      { w: "Mulan", h: "miecz" }, { w: "Pocahontas", h: "wiatr" }, { w: "Kopciuszek", h: "pantofelek" },
-      { w: "Encanto", h: "magia" }, { w: "Iniemamocni", h: "rodzina" }, { w: "Bambi", h: "polana" },
-      { w: "Dumbo", h: "uszy" }, { w: "Pinokio", h: "nos" }, { w: "Tarzan", h: "liana" },
-      { w: "Herkules", h: "Olimp" }, { w: "Stitch", h: "kosmita" }, { w: "Simba", h: "skała" },
-      { w: "Ariel", h: "ogon" }, { w: "Buzz", h: "nieskończoność" }, { w: "Bella", h: "róża" },
-      { w: "Aurora", h: "wrzeciono" }, { w: "Auta", h: "wyścig" }, { w: "Shrek", h: "bagno" },
-      { w: "Nemo", h: "rafa" }
+      { w: "Frozen", h: "siostra" }, { w: "Aladyn", h: "życzenie" }, { w: "Vaiana", h: "ocean" },
+      { w: "Zwierzogród", h: "marchewka" }, { w: "Coco", h: "marigold" }, { w: "Roszpunka", h: "wieża" },
+      { w: "Mulan", h: "honor" }, { w: "Pocahontas", h: "wiatr" }, { w: "Kopciuszek", h: "dynia" },
+      { w: "Encanto", h: "kolumbia" }, { w: "Iniemamocni", h: "kostium" }, { w: "Bambi", h: "łąka" },
+      { w: "Dumbo", h: "cyrk" }, { w: "Pinokio", h: "świerszcz" }, { w: "Tarzan", h: "dżungla" },
+      { w: "Herkules", h: "megara" }, { w: "Stitch", h: "Hawaje" }, { w: "Simba", h: "król" },
+      { w: "Ariel", h: "głos" }, { w: "Buzz", h: "ranger" }, { w: "Bella", h: "biblioteka" },
+      { w: "Aurora", h: "wrzeciono" }, { w: "Auta", h: "Zygzak" }, { w: "Shrek", h: "cebula" },
+      { w: "Nemo", h: "szukanie" }
     ]
   },
 
   "Polskie miasta": {
     icon: "🏙️",
     words: [
-      { w: "Warszawa", h: "syrenka" }, { w: "Kraków", h: "smok" }, { w: "Gdańsk", h: "bursztyn" },
-      { w: "Wrocław", h: "krasnale" }, { w: "Poznań", h: "rogale" }, { w: "Łódź", h: "fabryki" },
-      { w: "Zakopane", h: "górale" }, { w: "Sopot", h: "molo" }, { w: "Toruń", h: "pierniki" },
-      { w: "Częstochowa", h: "pielgrzymka" }, { w: "Lublin", h: "koziołek" }, { w: "Katowice", h: "Spodek" },
-      { w: "Białystok", h: "podlasie" }, { w: "Szczecin", h: "port" }, { w: "Olsztyn", h: "jeziora" },
-      { w: "Bydgoszcz", h: "Brda" }, { w: "Rzeszów", h: "lotnisko" }, { w: "Malbork", h: "zamek" },
-      { w: "Gdynia", h: "skwer" }, { w: "Opole", h: "piosenka" }, { w: "Kielce", h: "góry" },
-      { w: "Radom", h: "broń" }, { w: "Gniezno", h: "korona" }, { w: "Płock", h: "rafineria" },
-      { w: "Tarnów", h: "ratusz" }, { w: "Świnoujście", h: "prom" }
+      { w: "Warszawa", h: "syrenka" }, { w: "Kraków", h: "hejnał" }, { w: "Gdańsk", h: "żuraw" },
+      { w: "Wrocław", h: "mosty" }, { w: "Poznań", h: "koziołki" }, { w: "Łódź", h: "Piotrkowska" },
+      { w: "Zakopane", h: "oscypek" }, { w: "Sopot", h: "festiwal" }, { w: "Toruń", h: "Kopernik" },
+      { w: "Częstochowa", h: "pielgrzymka" }, { w: "Lublin", h: "brama" }, { w: "Katowice", h: "węgiel" },
+      { w: "Białystok", h: "żubr" }, { w: "Szczecin", h: "Odra" }, { w: "Olsztyn", h: "Mazury" },
+      { w: "Bydgoszcz", h: "opera" }, { w: "Rzeszów", h: "podkarpackie" }, { w: "Malbork", h: "krzyżacy" },
+      { w: "Gdynia", h: "modernizm" }, { w: "Opole", h: "amfiteatr" }, { w: "Kielce", h: "targi" },
+      { w: "Radom", h: "radar" }, { w: "Gniezno", h: "Mieszko" }, { w: "Płock", h: "Wisła" },
+      { w: "Tarnów", h: "renesans" }, { w: "Świnoujście", h: "tunel" }
     ]
   },
 
   "Sławni Polacy": {
     icon: "🇵🇱",
     words: [
-      { w: "Lewandowski", h: "bramka" }, { w: "Skłodowska", h: "rad" }, { w: "Chopin", h: "nokturn" },
-      { w: "Kopernik", h: "heliocentryzm" }, { w: "Wałęsa", h: "stocznia" }, { w: "Małysz", h: "skok" },
-      { w: "Szymborska", h: "wiersz" }, { w: "Sienkiewicz", h: "trylogia" }, { w: "Wajda", h: "reżyser" },
-      { w: "Stoch", h: "Zakopane" }, { w: "Świątek", h: "kort" }, { w: "Doda", h: "szok" },
-      { w: "Kościuszko", h: "kopiec" }, { w: "Piłsudski", h: "marszałek" }, { w: "Polański", h: "kino" },
-      { w: "Miłosz", h: "Nobel" }, { w: "Pilecki", h: "raport" }, { w: "Wojtyła", h: "papież" },
-      { w: "Mickiewicz", h: "Pan" }, { w: "Słowacki", h: "dramat" }, { w: "Tusk", h: "premier" },
-      { w: "Reksio", h: "animacja" }, { w: "Boniek", h: "Juventus" }, { w: "Kubica", h: "bolid" },
-      { w: "Penderecki", h: "kompozytor" }, { w: "Reymont", h: "chłopi" }
+      { w: "Lewandowski", h: "Barcelona" }, { w: "Skłodowska", h: "Paryż" }, { w: "Chopin", h: "Żelazowa" },
+      { w: "Kopernik", h: "Toruń" }, { w: "Wałęsa", h: "mur" }, { w: "Małysz", h: "Wisła" },
+      { w: "Szymborska", h: "kotka" }, { w: "Sienkiewicz", h: "pustynia" }, { w: "Wajda", h: "popiół" },
+      { w: "Stoch", h: "orzeł" }, { w: "Świątek", h: "Paryż" }, { w: "Doda", h: "rydwan" },
+      { w: "Kościuszko", h: "Racławice" }, { w: "Piłsudski", h: "Belweder" }, { w: "Polański", h: "Chinatown" },
+      { w: "Miłosz", h: "Wilno" }, { w: "Pilecki", h: "ochotnik" }, { w: "Wojtyła", h: "Wadowice" },
+      { w: "Mickiewicz", h: "Litwa" }, { w: "Słowacki", h: "Balladyna" }, { w: "Tusk", h: "platforma" },
+      { w: "Reksio", h: "buda" }, { w: "Boniek", h: "Juventus" }, { w: "Kubica", h: "Montreal" },
+      { w: "Penderecki", h: "Lśnienie" }, { w: "Reymont", h: "łódzkie" }
     ]
   },
 
   "Mitologia": {
     icon: "⚡",
     words: [
-      { w: "Zeus", h: "piorun" }, { w: "Posejdon", h: "trójząb" }, { w: "Hades", h: "podziemie" },
-      { w: "Atena", h: "tarcza" }, { w: "Afrodyta", h: "piękno" }, { w: "Apollo", h: "słońce" },
-      { w: "Ares", h: "bitwa" }, { w: "Hermes", h: "sandały" }, { w: "Herakles", h: "prace" },
-      { w: "Pegaz", h: "skrzydła" }, { w: "Centaur", h: "strzała" }, { w: "Minotaur", h: "labirynt" },
-      { w: "Meduza", h: "kamień" }, { w: "Cyklop", h: "oko" }, { w: "Odyseusz", h: "podróż" },
-      { w: "Achilles", h: "pięta" }, { w: "Thor", h: "młot" }, { w: "Loki", h: "sztuczka" },
-      { w: "Hera", h: "zazdrość" }, { w: "Artemida", h: "łuk" }, { w: "Persefona", h: "wiosna" },
-      { w: "Dionizos", h: "wino" }, { w: "Odyn", h: "kruk" }, { w: "Walkiria", h: "wojowniczka" },
-      { w: "Hefajstos", h: "kuźnia" }, { w: "Eros", h: "strzała" }
+      { w: "Zeus", h: "chmura" }, { w: "Posejdon", h: "koń" }, { w: "Hades", h: "trzyłeb" },
+      { w: "Atena", h: "oliwka" }, { w: "Afrodyta", h: "muszla" }, { w: "Apollo", h: "wawrzyn" },
+      { w: "Ares", h: "krew" }, { w: "Hermes", h: "sandały" }, { w: "Herakles", h: "dwanaście" },
+      { w: "Pegaz", h: "źródło" }, { w: "Centaur", h: "mędrzec" }, { w: "Minotaur", h: "Kreta" },
+      { w: "Meduza", h: "lustro" }, { w: "Cyklop", h: "kowal" }, { w: "Odyseusz", h: "nikt" },
+      { w: "Achilles", h: "Troja" }, { w: "Thor", h: "czwartek" }, { w: "Loki", h: "kłamca" },
+      { w: "Hera", h: "pawie" }, { w: "Artemida", h: "jeleń" }, { w: "Persefona", h: "granat" },
+      { w: "Dionizos", h: "maska" }, { w: "Odyn", h: "runy" }, { w: "Walkiria", h: "Wagner" },
+      { w: "Hefajstos", h: "wulkan" }, { w: "Eros", h: "opaska" }
     ]
   },
 
   "Zabawki i gry": {
     icon: "🎮",
     words: [
-      { w: "Lalka", h: "domek" }, { w: "Lego", h: "klocek" }, { w: "Miś", h: "pluszowy" },
-      { w: "Rubik", h: "kostka" }, { w: "Bączek", h: "kręci" }, { w: "Skakanka", h: "skok" },
-      { w: "Domino", h: "kostki" }, { w: "Monopoly", h: "bankrut" }, { w: "Scrabble", h: "litery" },
-      { w: "Memory", h: "pary" }, { w: "Puzzle", h: "układanka" }, { w: "Twister", h: "kolory" },
-      { w: "Karty", h: "talia" }, { w: "Yo-yo", h: "sznurek" }, { w: "Konsola", h: "pad" },
-      { w: "PlayStation", h: "Sony" }, { w: "Minecraft", h: "kopanie" }, { w: "Frisbee", h: "dysk" },
-      { w: "Warcaby", h: "bicia" }, { w: "Pinball", h: "kulka" }, { w: "Bierki", h: "drżenie" },
-      { w: "Pajacyk", h: "sznurek" }, { w: "Kalambury", h: "rysowanie" }, { w: "Klocki", h: "wieża" },
-      { w: "Kapsle", h: "piłka" }
+      { w: "Lalka", h: "Barbie" }, { w: "Lego", h: "Dania" }, { w: "Miś", h: "dziecko" },
+      { w: "Rubik", h: "Węgry" }, { w: "Bączek", h: "obrót" }, { w: "Skakanka", h: "podwórko" },
+      { w: "Domino", h: "efekt" }, { w: "Monopoly", h: "więzienie" }, { w: "Scrabble", h: "punkty" },
+      { w: "Memory", h: "odkrywanie" }, { w: "Puzzle", h: "element" }, { w: "Twister", h: "plamy" },
+      { w: "Karty", h: "poker" }, { w: "Yo-yo", h: "Filipiny" }, { w: "Konsola", h: "kanapa" },
+      { w: "PlayStation", h: "Sony" }, { w: "Minecraft", h: "kopanie" }, { w: "Frisbee", h: "park" },
+      { w: "Warcaby", h: "damka" }, { w: "Pinball", h: "dźwignia" }, { w: "Bierki", h: "cierpliwość" },
+      { w: "Pajacyk", h: "drewno" }, { w: "Kalambury", h: "rysowanie" }, { w: "Klocki", h: "zamek" },
+      { w: "Kapsle", h: "boisko" }
     ]
   },
 
   "Polska impreza": {
     icon: "🥳",
     words: [
-      { w: "Wódka", h: "czysta" }, { w: "Kac", h: "poranek" }, { w: "Wujek", h: "taniec" },
+      { w: "Wódka", h: "Żubrówka" }, { w: "Kac", h: "obietnica" }, { w: "Wujek", h: "taniec" },
       { w: "Karaoke", h: "fałsz" }, { w: "Pizza", h: "zamówienie" }, { w: "Kebab", h: "nocny" },
-      { w: "Disco", h: "kula" }, { w: "Polonez", h: "para" }, { w: "Szampan", h: "korek" },
-      { w: "Piwo", h: "kufel" }, { w: "Tańce", h: "parkiet" }, { w: "Toast", h: "zdrowie" },
-      { w: "Nalewka", h: "babcia" }, { w: "Bimber", h: "garaż" }, { w: "Imieniny", h: "kalendarz" },
-      { w: "Andrzejki", h: "wosk" }, { w: "Sylwester", h: "fajerwerki" }, { w: "Setka", h: "kieliszek" },
-      { w: "Shot", h: "duszkiem" }, { w: "Grill", h: "kiełbasa" }, { w: "Ognisko", h: "gitara" },
-      { w: "Sąsiad", h: "cisza" }, { w: "Patelnia", h: "jajecznica" }, { w: "Lampka", h: "wino" },
-      { w: "Drzemka", h: "kanapa" }, { w: "Bałagan", h: "sprzątanie" }
+      { w: "Disco", h: "polo" }, { w: "Polonez", h: "para" }, { w: "Szampan", h: "korek" },
+      { w: "Piwo", h: "ogródek" }, { w: "Tańce", h: "parkiet" }, { w: "Toast", h: "zdrowie" },
+      { w: "Nalewka", h: "piwnica" }, { w: "Bimber", h: "wieś" }, { w: "Imieniny", h: "kalendarz" },
+      { w: "Andrzejki", h: "listopad" }, { w: "Sylwester", h: "countdown" }, { w: "Setka", h: "kieliszek" },
+      { w: "Shot", h: "duszkiem" }, { w: "Grill", h: "ogródek" }, { w: "Ognisko", h: "gitara" },
+      { w: "Sąsiad", h: "policja" }, { w: "Patelnia", h: "jajecznica" }, { w: "Lampka", h: "wino" },
+      { w: "Drzemka", h: "kanapa" }, { w: "Bałagan", h: "rano" }
     ]
   },
 
@@ -232,44 +232,44 @@ const CATEGORIES = {
     icon: "💒",
     words: [
       { w: "Welon", h: "tiulowy" }, { w: "Bukiet", h: "rzut" }, { w: "Tort", h: "piętra" },
-      { w: "Polonez", h: "pierwszy" }, { w: "Oczepiny", h: "północ" }, { w: "Świadek", h: "obrączka" },
-      { w: "Druhna", h: "sukienka" }, { w: "Toast", h: "gorzko" }, { w: "Szampan", h: "bąbelki" },
-      { w: "Konfetti", h: "kolorowe" }, { w: "Pierścionek", h: "brylant" }, { w: "Garnitur", h: "krawat" },
-      { w: "Suknia", h: "biała" }, { w: "Obrączki", h: "złoto" }, { w: "Kelner", h: "tacka" },
-      { w: "Konferansjer", h: "zabawy" }, { w: "Wesele", h: "sala" }, { w: "Ślub", h: "przysięga" },
+      { w: "Polonez", h: "pierwszy" }, { w: "Oczepiny", h: "zabawa" }, { w: "Świadek", h: "mowa" },
+      { w: "Druhna", h: "pastel" }, { w: "Toast", h: "gorzko" }, { w: "Szampan", h: "bąbelki" },
+      { w: "Konfetti", h: "kolorowe" }, { w: "Pierścionek", h: "kolano" }, { w: "Garnitur", h: "krawat" },
+      { w: "Suknia", h: "salon" }, { w: "Obrączki", h: "palec" }, { w: "Kelner", h: "tacka" },
+      { w: "Konferansjer", h: "zabawy" }, { w: "Wesele", h: "Smarzowski" }, { w: "Ślub", h: "przysięga" },
       { w: "Ksiądz", h: "kazanie" }, { w: "Orszak", h: "para" }, { w: "Goście", h: "koperty" },
-      { w: "Bramy", h: "wódka" }, { w: "Korowód", h: "muzyka" }, { w: "Kotlety", h: "obiad" },
-      { w: "Kapela", h: "disco" }, { w: "Limuzyna", h: "biała" }
+      { w: "Bramy", h: "wódka" }, { w: "Korowód", h: "ulica" }, { w: "Kotlety", h: "obiad" },
+      { w: "Kapela", h: "biesiadna" }, { w: "Limuzyna", h: "parking" }
     ]
   },
 
   "Klubowa noc": {
     icon: "🪩",
     words: [
-      { w: "Bramkarz", h: "selekcja" }, { w: "Strobo", h: "światło" }, { w: "Drink", h: "koktajl" },
-      { w: "Selfie", h: "lusterko" }, { w: "Taksówka", h: "powrót" }, { w: "Glitter", h: "brokat" },
-      { w: "Bar", h: "lada" }, { w: "Klub", h: "kolejka" }, { w: "Tańce", h: "bass" },
-      { w: "Numer", h: "telefon" }, { w: "Portfel", h: "zgubiony" }, { w: "Telefon", h: "bateria" },
-      { w: "Muzyka", h: "głośno" }, { w: "Szatnia", h: "kurtka" }, { w: "Stempel", h: "ręka" },
-      { w: "Shot", h: "kolejka" }, { w: "Kolejka", h: "toaleta" }, { w: "Kibel", h: "lustro" },
-      { w: "Garderoba", h: "numerek" }, { w: "Parkiet", h: "taniec" }, { w: "Wejściówka", h: "cena" },
-      { w: "Lampka", h: "nastrój" }, { w: "Imprezowicz", h: "energia" }, { w: "Tequila", h: "sól" },
-      { w: "Mojito", h: "mięta" }, { w: "DJ", h: "mikser" }
+      { w: "Bramkarz", h: "lista" }, { w: "Strobo", h: "epilepsja" }, { w: "Drink", h: "słomka" },
+      { w: "Selfie", h: "lusterko" }, { w: "Taksówka", h: "powrót" }, { w: "Glitter", h: "policzek" },
+      { w: "Bar", h: "stołek" }, { w: "Klub", h: "piwnica" }, { w: "Tańce", h: "bass" },
+      { w: "Numer", h: "serwetka" }, { w: "Portfel", h: "zgubiony" }, { w: "Telefon", h: "martwy" },
+      { w: "Muzyka", h: "głośno" }, { w: "Szatnia", h: "numerek" }, { w: "Stempel", h: "nadgarstek" },
+      { w: "Shot", h: "rząd" }, { w: "Kolejka", h: "toaleta" }, { w: "Kibel", h: "graffiti" },
+      { w: "Garderoba", h: "plakat" }, { w: "Parkiet", h: "stopy" }, { w: "Wejściówka", h: "cena" },
+      { w: "Lampka", h: "nastrój" }, { w: "Imprezowicz", h: "ostatni" }, { w: "Tequila", h: "robak" },
+      { w: "Mojito", h: "Kuba" }, { w: "DJ", h: "słuchawka" }
     ]
   },
 
   "Imprezowy poranek": {
     icon: "😵",
     words: [
-      { w: "Kac", h: "głowa" }, { w: "Tabletka", h: "ratunek" }, { w: "Pizza", h: "wczorajsza" },
+      { w: "Kac", h: "obietnica" }, { w: "Tabletka", h: "woda" }, { w: "Pizza", h: "karton" },
       { w: "Mleko", h: "lodówka" }, { w: "Spacer", h: "powietrze" }, { w: "Smutek", h: "portfel" },
       { w: "Wstyd", h: "wspomnienia" }, { w: "Galeria", h: "zdjęcia" }, { w: "Drzemka", h: "południe" },
-      { w: "Mdłości", h: "żołądek" }, { w: "Migrena", h: "ciemność" }, { w: "Rosół", h: "babcia" },
-      { w: "Apap", h: "dawka" }, { w: "Łazienka", h: "lustro" }, { w: "Sen", h: "kołdra" },
-      { w: "Płacz", h: "powód" }, { w: "Wyrzuty", h: "sumienie" }, { w: "Ucieczka", h: "taxi" },
-      { w: "Kawa", h: "podwójna" }, { w: "Aspiryna", h: "bąbelki" }, { w: "Cisza", h: "proszę" },
-      { w: "Niedziela", h: "stracona" }, { w: "Telefon", h: "wiadomości" }, { w: "Wymioty", h: "łazienka" },
-      { w: "Wstanie", h: "trudne" }, { w: "Pościel", h: "schowanie" }
+      { w: "Mdłości", h: "okno" }, { w: "Migrena", h: "ciemność" }, { w: "Rosół", h: "ratunkowy" },
+      { w: "Apap", h: "apteczka" }, { w: "Łazienka", h: "porcelana" }, { w: "Sen", h: "kołdra" },
+      { w: "Płacz", h: "powód" }, { w: "Wyrzuty", h: "obietnica" }, { w: "Ucieczka", h: "buty" },
+      { w: "Kawa", h: "podwójna" }, { w: "Aspiryna", h: "szklanka" }, { w: "Cisza", h: "proszę" },
+      { w: "Niedziela", h: "stracona" }, { w: "Telefon", h: "wiadomości" }, { w: "Wymioty", h: "porcelana" },
+      { w: "Wstanie", h: "heroizm" }, { w: "Pościel", h: "schowanie" }
     ]
   },
 
@@ -278,124 +278,124 @@ const CATEGORIES = {
   "TikTok Brainrot": {
     icon: "🧠",
     words: [
-      { w: "Skibidi", h: "toaleta" }, { w: "Sigma", h: "samotnik" }, { w: "Rizz", h: "czar" },
-      { w: "Ohio", h: "dziwne" }, { w: "Gyatt", h: "reakcja" }, { w: "Mewing", h: "szczęka" },
-      { w: "NPC", h: "automat" }, { w: "Delulu", h: "złudzenia" }, { w: "Slay", h: "królowa" },
-      { w: "Bussin", h: "pyszne" }, { w: "Vibe", h: "nastrój" }, { w: "Sus", h: "podejrzany" },
-      { w: "Simp", h: "adoracja" }, { w: "Ratio", h: "lajki" }, { w: "Aura", h: "punkty" },
-      { w: "Goated", h: "najlepszy" }, { w: "Fanum Tax", h: "jedzenie" }, { w: "Looksmaxxing", h: "lustro" },
-      { w: "Mogging", h: "dominacja" }, { w: "Gigachad", h: "idealny" }, { w: "Bombardiro", h: "krokodyl" },
-      { w: "Tralalero", h: "włoski" }, { w: "Tung Tung", h: "sahur" }, { w: "Cameraman", h: "kamera" },
-      { w: "Speakerman", h: "głośnik" }, { w: "Griddy", h: "taniec" }
+      { w: "Skibidi", h: "porcelana" }, { w: "Sigma", h: "wilk" }, { w: "Rizz", h: "podejście" },
+      { w: "Ohio", h: "kukurydza" }, { w: "Gyatt", h: "spojrzenie" }, { w: "Mewing", h: "postawa" },
+      { w: "NPC", h: "skrypt" }, { w: "Delulu", h: "crush" }, { w: "Slay", h: "catwalk" },
+      { w: "Bussin", h: "stołówka" }, { w: "Vibe", h: "check" }, { w: "Sus", h: "wentylacja" },
+      { w: "Simp", h: "parasol" }, { w: "Ratio", h: "odpowiedź" }, { w: "Aura", h: "sto" },
+      { w: "Goated", h: "trofeum" }, { w: "Fanum Tax", h: "kęs" }, { w: "Looksmaxxing", h: "siłownia" },
+      { w: "Mogging", h: "cień" }, { w: "Gigachad", h: "mem" }, { w: "Bombardiro", h: "samolot" },
+      { w: "Tralalero", h: "rekin" }, { w: "Tung Tung", h: "sahur" }, { w: "Cameraman", h: "Skibidi" },
+      { w: "Speakerman", h: "sojusznik" }, { w: "Griddy", h: "touchdown" }
     ]
   },
 
   "Memy internetowe": {
     icon: "🐸",
     words: [
-      { w: "Doge", h: "pieseł" }, { w: "Pepe", h: "żaba" }, { w: "Rickroll", h: "pułapka" },
-      { w: "Stonks", h: "wykres" }, { w: "Wojak", h: "smutek" }, { w: "Karen", h: "menedżer" },
-      { w: "Nyan Cat", h: "tęcza" }, { w: "Harambe", h: "goryl" }, { w: "Trollface", h: "problem" },
-      { w: "Distracted", h: "chłopak" }, { w: "Drakepost", h: "gest" }, { w: "Shrek", h: "bagno" },
-      { w: "Amogus", h: "kosmita" }, { w: "Bonk", h: "pałka" }, { w: "Grumpy Cat", h: "nie" },
-      { w: "Cheems", h: "piesek" }, { w: "Gigachad", h: "broda" }, { w: "Coffin Dance", h: "Ghana" },
-      { w: "This Is Fine", h: "pożar" }, { w: "Surprised Pikachu", h: "szok" },
-      { w: "Kombucha Girl", h: "mina" }, { w: "Woman Yelling", h: "kot" },
-      { w: "Polska Gurom", h: "duma" }, { w: "Bober", h: "kurwa" },
-      { w: "Nosacz", h: "Borneo" }, { w: "Vibing Cat", h: "bęben" }
+      { w: "Doge", h: "wow" }, { w: "Pepe", h: "rzadki" }, { w: "Rickroll", h: "pułapka" },
+      { w: "Stonks", h: "garnitur" }, { w: "Wojak", h: "czuć" }, { w: "Karen", h: "menedżer" },
+      { w: "Nyan Cat", h: "piksel" }, { w: "Harambe", h: "zoo" }, { w: "Trollface", h: "problem" },
+      { w: "Distracted", h: "czerwona" }, { w: "Drakepost", h: "gest" }, { w: "Shrek", h: "warstwy" },
+      { w: "Amogus", h: "wentylacja" }, { w: "Bonk", h: "więzienie" }, { w: "Grumpy Cat", h: "poniedziałek" },
+      { w: "Cheems", h: "bonk" }, { w: "Gigachad", h: "tak" }, { w: "Coffin Dance", h: "Ghana" },
+      { w: "This Is Fine", h: "kubek" }, { w: "Surprised Pikachu", h: "otwarte" },
+      { w: "Kombucha Girl", h: "mina" }, { w: "Woman Yelling", h: "stół" },
+      { w: "Polska Gurom", h: "PCMR" }, { w: "Bober", h: "tama" },
+      { w: "Nosacz", h: "Janusz" }, { w: "Vibing Cat", h: "turek" }
     ]
   },
 
   "Filmy kultowe": {
     icon: "🎬",
     words: [
-      { w: "Matrix", h: "pigułka" }, { w: "Titanic", h: "góra" }, { w: "Gwiezdne Wojny", h: "miecz" },
-      { w: "Harry Potter", h: "różdżka" }, { w: "Władca Pierścieni", h: "Mordor" },
-      { w: "Gladiator", h: "arena" }, { w: "Joker", h: "schody" }, { w: "Avengers", h: "drużyna" },
-      { w: "Forrest Gump", h: "bieganie" }, { w: "Incepcja", h: "sen" }, { w: "Interstellar", h: "czas" },
-      { w: "Zielona Mila", h: "korytarz" }, { w: "Chłopaki nie płaczą", h: "walizka" },
+      { w: "Matrix", h: "łyżka" }, { w: "Titanic", h: "drzwi" }, { w: "Gwiezdne Wojny", h: "ojciec" },
+      { w: "Harry Potter", h: "blizna" }, { w: "Władca Pierścieni", h: "przygoda" },
+      { w: "Gladiator", h: "pszenica" }, { w: "Joker", h: "schody" }, { w: "Avengers", h: "pstryknięcie" },
+      { w: "Forrest Gump", h: "czekoladki" }, { w: "Incepcja", h: "bączek" }, { w: "Interstellar", h: "kukurydza" },
+      { w: "Zielona Mila", h: "korytarz" }, { w: "Chłopaki nie płaczą", h: "Bolec" },
       { w: "Miś", h: "Rączka" }, { w: "Shrek", h: "osioł" }, { w: "Piraci z Karaibów", h: "rum" },
-      { w: "Batman", h: "jaskinia" }, { w: "Spider-Man", h: "pajęczyna" },
-      { w: "Skazani na Shawshank", h: "tunel" }, { w: "Pulp Fiction", h: "walizka" },
-      { w: "Król Lew", h: "sawanna" }, { w: "Szybcy i wściekli", h: "rodzina" },
-      { w: "Top Gun", h: "odrzutowiec" }, { w: "Rocky", h: "schody" },
-      { w: "Deadpool", h: "chimichanga" }, { w: "Oppenheimer", h: "bomba" }
+      { w: "Batman", h: "Gotham" }, { w: "Spider-Man", h: "Nowy Jork" },
+      { w: "Skazani na Shawshank", h: "plakat" }, { w: "Pulp Fiction", h: "taniec" },
+      { w: "Król Lew", h: "Hakuna" }, { w: "Szybcy i wściekli", h: "rodzina" },
+      { w: "Top Gun", h: "Maverick" }, { w: "Rocky", h: "Filadelfia" },
+      { w: "Deadpool", h: "czwarta ściana" }, { w: "Oppenheimer", h: "pustynia" }
     ]
   },
 
   "Seriale": {
     icon: "📺",
     words: [
-      { w: "Breaking Bad", h: "chemia" }, { w: "Squid Game", h: "lalka" },
-      { w: "Stranger Things", h: "demogorgon" }, { w: "Przyjaciele", h: "kanapa" },
-      { w: "The Office", h: "biuro" }, { w: "Wiedźmin", h: "miecz" },
-      { w: "Dom z Papieru", h: "maska" }, { w: "Peaky Blinders", h: "kaszkiet" },
-      { w: "Wednesday", h: "Addams" }, { w: "The Crown", h: "korona" },
-      { w: "Narcos", h: "kartel" }, { w: "Dark", h: "jaskinia" },
+      { w: "Breaking Bad", h: "pustynia" }, { w: "Squid Game", h: "cukierek" },
+      { w: "Stranger Things", h: "jedynka" }, { w: "Przyjaciele", h: "Central Perk" },
+      { w: "The Office", h: "zszywacz" }, { w: "Wiedźmin", h: "monety" },
+      { w: "Dom z Papieru", h: "czerwony" }, { w: "Peaky Blinders", h: "whiskey" },
+      { w: "Wednesday", h: "Nevermore" }, { w: "The Crown", h: "pałac" },
+      { w: "Narcos", h: "Kolumbia" }, { w: "Dark", h: "jaskinia" },
       { w: "Ranczo", h: "Wilkowyje" }, { w: "1670", h: "szlachta" },
       { w: "Klan", h: "Lubiczowie" }, { w: "M jak Miłość", h: "Mostowiacy" },
-      { w: "The Mandalorian", h: "dziecko" }, { w: "Black Mirror", h: "ekran" },
-      { w: "Arcane", h: "Jinx" }, { w: "Gra o Tron", h: "żelazny" },
-      { w: "Ted Lasso", h: "trener" }, { w: "Chernobyl", h: "reaktor" },
-      { w: "The Last of Us", h: "grzyb" }, { w: "One Piece", h: "kapelusz" },
-      { w: "Euphoria", h: "liceum" }, { w: "Severance", h: "winda" }
+      { w: "The Mandalorian", h: "mówić" }, { w: "Black Mirror", h: "ocena" },
+      { w: "Arcane", h: "most" }, { w: "Gra o Tron", h: "zima" },
+      { w: "Ted Lasso", h: "ciastko" }, { w: "Chernobyl", h: "grafitowy" },
+      { w: "The Last of Us", h: "Joel" }, { w: "One Piece", h: "kapelusz" },
+      { w: "Euphoria", h: "neon" }, { w: "Severance", h: "piętro" }
     ]
   },
 
   "Gry wideo": {
     icon: "🕹️",
     words: [
-      { w: "Minecraft", h: "kopanie" }, { w: "Fortnite", h: "budowanie" },
-      { w: "GTA", h: "kradzież" }, { w: "FIFA", h: "boisko" },
-      { w: "Mario", h: "grzyb" }, { w: "Zelda", h: "Triforce" },
-      { w: "Wiedźmin", h: "Geralt" }, { w: "Cyberpunk", h: "Night City" },
-      { w: "Among Us", h: "impostor" }, { w: "Roblox", h: "klocki" },
-      { w: "League of Legends", h: "linia" }, { w: "Counter-Strike", h: "bomba" },
-      { w: "Tetris", h: "klocek" }, { w: "Pokémon", h: "piłka" },
-      { w: "Call of Duty", h: "strzał" }, { w: "Dark Souls", h: "śmierć" },
-      { w: "Elden Ring", h: "pierścień" }, { w: "Valorant", h: "agent" },
-      { w: "Overwatch", h: "drużyna" }, { w: "Apex Legends", h: "skok" },
-      { w: "Stardew Valley", h: "farma" }, { w: "Animal Crossing", h: "wyspa" },
-      { w: "Diablo", h: "piekło" }, { w: "World of Warcraft", h: "gildia" },
-      { w: "The Sims", h: "budowanie" }, { w: "Hogwarts Legacy", h: "magia" }
+      { w: "Minecraft", h: "creeper" }, { w: "Fortnite", h: "autobus" },
+      { w: "GTA", h: "radio" }, { w: "FIFA", h: "paczka" },
+      { w: "Mario", h: "rura" }, { w: "Zelda", h: "ocarina" },
+      { w: "Wiedźmin", h: "Kaer Morhen" }, { w: "Cyberpunk", h: "Johnny" },
+      { w: "Among Us", h: "wentylacja" }, { w: "Roblox", h: "robux" },
+      { w: "League of Legends", h: "toksyk" }, { w: "Counter-Strike", h: "rush" },
+      { w: "Tetris", h: "Rosja" }, { w: "Pokémon", h: "złap" },
+      { w: "Call of Duty", h: "lobby" }, { w: "Dark Souls", h: "ognisko" },
+      { w: "Elden Ring", h: "drzewo" }, { w: "Valorant", h: "spike" },
+      { w: "Overwatch", h: "leczenie" }, { w: "Apex Legends", h: "skakanie" },
+      { w: "Stardew Valley", h: "ślub" }, { w: "Animal Crossing", h: "Tom Nook" },
+      { w: "Diablo", h: "loot" }, { w: "World of Warcraft", h: "gildia" },
+      { w: "The Sims", h: "drabina" }, { w: "Hogwarts Legacy", h: "miotła" }
     ]
   },
 
   "Szkoła": {
     icon: "🏫",
     words: [
-      { w: "Klasówka", h: "stres" }, { w: "Przerwa", h: "dzwonek" },
+      { w: "Klasówka", h: "niespodzianka" }, { w: "Przerwa", h: "dzwonek" },
       { w: "Nauczyciel", h: "kreda" }, { w: "Ściąga", h: "rękaw" },
       { w: "Dyrektor", h: "gabinet" }, { w: "Świadectwo", h: "pasek" },
-      { w: "Wagarowanie", h: "ucieczka" }, { w: "Odpytywanie", h: "palec" },
-      { w: "Szafka", h: "zamek" }, { w: "Stołówka", h: "zupa" },
-      { w: "WF", h: "dres" }, { w: "Wywiadówka", h: "rodzice" },
+      { w: "Wagarowanie", h: "park" }, { w: "Odpytywanie", h: "loteria" },
+      { w: "Szafka", h: "zamek" }, { w: "Stołówka", h: "kompot" },
+      { w: "WF", h: "zwolnienie" }, { w: "Wywiadówka", h: "strach" },
       { w: "Plecak", h: "ciężki" }, { w: "Zeszyt", h: "margines" },
-      { w: "Tablica", h: "gąbka" }, { w: "Dziennik", h: "oceny" },
-      { w: "Matura", h: "arkusz" }, { w: "Korepetycje", h: "matma" },
+      { w: "Tablica", h: "gąbka" }, { w: "Dziennik", h: "Vulcan" },
+      { w: "Matura", h: "maj" }, { w: "Korepetycje", h: "matma" },
       { w: "Wycieczka", h: "autokar" }, { w: "Akademia", h: "apel" },
       { w: "Woźny", h: "klucze" }, { w: "Sklepik", h: "drożdżówka" },
-      { w: "Piątka", h: "wzorowy" }, { w: "Jedynka", h: "uwaga" },
-      { w: "Podręcznik", h: "wypożyczony" }, { w: "Dyżurny", h: "tablica" }
+      { w: "Piątka", h: "bańka" }, { w: "Jedynka", h: "uwaga" },
+      { w: "Podręcznik", h: "ciężar" }, { w: "Dyżurny", h: "gąbka" }
     ]
   },
 
   "Social Media": {
     icon: "📱",
     words: [
-      { w: "TikTok", h: "scroll" }, { w: "Instagram", h: "stories" },
-      { w: "YouTube", h: "subskrypcja" }, { w: "Twitter", h: "ptaszek" },
-      { w: "Snapchat", h: "duszek" }, { w: "Discord", h: "serwer" },
-      { w: "Reddit", h: "karma" }, { w: "WhatsApp", h: "grupy" },
-      { w: "Twitch", h: "stream" }, { w: "BeReal", h: "powiadomienie" },
-      { w: "Influencer", h: "współpraca" }, { w: "Hejter", h: "komentarz" },
-      { w: "Follower", h: "obserwacja" }, { w: "Viral", h: "milion" },
-      { w: "Hashtag", h: "kratka" }, { w: "Reels", h: "filmik" },
-      { w: "Lajk", h: "serduszko" }, { w: "Algorytm", h: "polecane" },
-      { w: "Moderator", h: "banhammer" }, { w: "Troll", h: "prowokacja" },
-      { w: "Clickbait", h: "tytuł" }, { w: "Unboxing", h: "paczka" },
-      { w: "Podcast", h: "mikrofon" }, { w: "Meme", h: "szablon" },
-      { w: "Streamer", h: "donacja" }, { w: "Ghosting", h: "cisza" }
+      { w: "TikTok", h: "zegar" }, { w: "Instagram", h: "filtr" },
+      { w: "YouTube", h: "czerwony" }, { w: "Twitter", h: "limit" },
+      { w: "Snapchat", h: "duszek" }, { w: "Discord", h: "gaming" },
+      { w: "Reddit", h: "karma" }, { w: "WhatsApp", h: "ptaszki" },
+      { w: "Twitch", h: "czat" }, { w: "BeReal", h: "powiadomienie" },
+      { w: "Influencer", h: "kod" }, { w: "Hejter", h: "klawiatura" },
+      { w: "Follower", h: "licznik" }, { w: "Viral", h: "udostępnienie" },
+      { w: "Hashtag", h: "trend" }, { w: "Reels", h: "pionowy" },
+      { w: "Lajk", h: "kciuk" }, { w: "Algorytm", h: "bańka" },
+      { w: "Moderator", h: "banhammer" }, { w: "Troll", h: "most" },
+      { w: "Clickbait", h: "strzałka" }, { w: "Unboxing", h: "nożyczki" },
+      { w: "Podcast", h: "odcinek" }, { w: "Meme", h: "szablon" },
+      { w: "Streamer", h: "donacja" }, { w: "Ghosting", h: "przeczytane" }
     ]
   }
 };
