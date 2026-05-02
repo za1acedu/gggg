@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'impostor-v1';
+const CACHE_VERSION = 'impostor-v2';
 const CACHE_FILES = [
   '/',
   '/index.html',
@@ -34,7 +34,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((cached) => {
-      return cached || fetch(event.request).then((response) => {
+      const fetchPromise = fetch(event.request).then((response) => {
         if (response.ok) {
           const clone = response.clone();
           caches.open(CACHE_VERSION).then((cache) => {
@@ -42,7 +42,9 @@ self.addEventListener('fetch', (event) => {
           });
         }
         return response;
-      });
+      }).catch(() => cached);
+
+      return cached || fetchPromise;
     })
   );
 });
