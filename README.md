@@ -5,17 +5,19 @@ hasło lub dowiaduje się, że jest **impostorem**. Po dyskusji głosujecie kto 
 
 ## Funkcje
 
-- **15 kategorii**, ponad 250 haseł z podpowiedziami
+- **31 kategorii**, ponad 800 haseł z oddalonymi podpowiedziami
 - 3–12 graczy, regulowana liczba impostorów
 - Tryb z podpowiedziami lub bez (trudniejszy)
-- Wbudowany timer dyskusji
 - 100 % offline po załadowaniu — działa na każdym telefonie
 
 ## Kategorie haseł
 
 Zwierzęta · Jedzenie · Sport · Kraje · Zawody · Owoce i warzywa · Pojazdy ·
 Muzyka · Technologia · Bajki Disneya · Polskie miasta · Sławni Polacy ·
-Mitologia · Zabawki i gry
+Mitologia · Zabawki i gry · Polska impreza · Polskie wesele · Klubowa noc ·
+Imprezowy poranek · TikTok Brainrot · Memy internetowe · Filmy kultowe ·
+Seriale · Gry wideo · Szkoła · Social Media · Plaża i wakacje ·
+Boże Narodzenie · Pogoda · Praca w biurze · Anime · Kosmos
 
 ## Szybki deploy na Coolify
 

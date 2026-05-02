@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'impostor-v2';
+const CACHE_VERSION = 'impostor-v3';
 const CACHE_FILES = [
   '/',
   '/index.html',

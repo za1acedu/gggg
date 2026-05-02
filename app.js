@@ -69,7 +69,7 @@ const CATEGORIES = {
       { w: "Lekarz", h: "biały" }, { w: "Strażak", h: "drabina" }, { w: "Policjant", h: "patrol" },
       { w: "Nauczyciel", h: "wrzesień" }, { w: "Piekarz", h: "świt" }, { w: "Pilot", h: "turbulencja" },
       { w: "Kucharz", h: "czapka" }, { w: "Architekt", h: "makieta" }, { w: "Programista", h: "kawa" },
-      { w: "Fryzjer", h: "fotel" }, { w: "Mechanik", h: "smар" }, { w: "Ogrodnik", h: "konewka" },
+      { w: "Fryzjer", h: "fotel" }, { w: "Mechanik", h: "smar" }, { w: "Ogrodnik", h: "konewka" },
       { w: "Listonosz", h: "rower" }, { w: "Aktor", h: "Oscar" }, { w: "Dentysta", h: "fotel" },
       { w: "Adwokat", h: "toga" }, { w: "Weterynarz", h: "kociak" }, { w: "Astronauta", h: "cisza" },
       { w: "Murarz", h: "kielnia" }, { w: "Stolarz", h: "trociny" }, { w: "Hydraulik", h: "Mario" },
@@ -397,6 +397,96 @@ const CATEGORIES = {
       { w: "Podcast", h: "odcinek" }, { w: "Meme", h: "szablon" },
       { w: "Streamer", h: "donacja" }, { w: "Ghosting", h: "przeczytane" }
     ]
+  },
+
+  "Plaża i wakacje": {
+    icon: "🏖️",
+    words: [
+      { w: "Krem", h: "filtr" }, { w: "Parawan", h: "Bałtyk" }, { w: "Walizka", h: "kółka" },
+      { w: "Paszport", h: "kontrola" }, { w: "Lotnisko", h: "bramka" }, { w: "Hotel", h: "gwiazdki" },
+      { w: "Basen", h: "chlor" }, { w: "Klapki", h: "lato" }, { w: "Maska", h: "rurka" },
+      { w: "Muszelka", h: "Adriatyk" }, { w: "Pocztówka", h: "babcia" }, { w: "Bursztyn", h: "żywica" },
+      { w: "Bilet", h: "last-minute" }, { w: "Termos", h: "herbata" }, { w: "Snorkel", h: "rafa" },
+      { w: "Jacht", h: "Mazury" }, { w: "Recepcja", h: "klucz" }, { w: "Materac", h: "kemping" },
+      { w: "Lornetka", h: "ptaki" }, { w: "Słońce", h: "udar" }, { w: "Plaża", h: "Sopot" },
+      { w: "Opalenizna", h: "czerwień" }, { w: "Sorbet", h: "patyk" }, { w: "Płetwy", h: "żabka" },
+      { w: "Pamiątka", h: "magnesik" }, { w: "Koktajl", h: "palma" }
+    ]
+  },
+
+  "Boże Narodzenie": {
+    icon: "🎄",
+    words: [
+      { w: "Choinka", h: "igliwie" }, { w: "Bombka", h: "krucha" }, { w: "Lampki", h: "migotanie" },
+      { w: "Prezent", h: "kokarda" }, { w: "Mikołaj", h: "komin" }, { w: "Renifer", h: "Rudolf" },
+      { w: "Opłatek", h: "życzenia" }, { w: "Karp", h: "wanna" }, { w: "Makowiec", h: "rolada" },
+      { w: "Piernik", h: "Toruń" }, { w: "Kolęda", h: "Cicha" }, { w: "Stajenka", h: "Betlejem" },
+      { w: "Anioł", h: "skrzydła" }, { w: "Gwiazdka", h: "pierwsza" }, { w: "Łańcuch", h: "bibuła" },
+      { w: "Bałwan", h: "marchewka" }, { w: "Worek", h: "prezenty" }, { w: "Roraty", h: "świt" },
+      { w: "Pasterka", h: "północ" }, { w: "Adwent", h: "wieniec" }, { w: "Mikołajki", h: "buty" },
+      { w: "Wieczerza", h: "dwanaście" }, { w: "Kompot", h: "suszony" }, { w: "Sianko", h: "obrus" },
+      { w: "Trzej", h: "królowie" }, { w: "Jemioła", h: "pocałunek" }
+    ]
+  },
+
+  "Pogoda": {
+    icon: "🌦️",
+    words: [
+      { w: "Burza", h: "piorun" }, { w: "Deszcz", h: "parasol" }, { w: "Śnieg", h: "iglo" },
+      { w: "Tęcza", h: "siedem" }, { w: "Wiatr", h: "młyn" }, { w: "Mgła", h: "Londyn" },
+      { w: "Grad", h: "kulki" }, { w: "Chmura", h: "wata" }, { w: "Mróz", h: "dziadek" },
+      { w: "Upał", h: "Sahara" }, { w: "Wichura", h: "drzewa" }, { w: "Tornado", h: "Kansas" },
+      { w: "Zamieć", h: "biel" }, { w: "Plucha", h: "szarość" }, { w: "Susza", h: "pęknięcie" },
+      { w: "Powódź", h: "worki" }, { w: "Halny", h: "Tatry" }, { w: "Rosa", h: "poranek" },
+      { w: "Szron", h: "okno" }, { w: "Smog", h: "Kraków" }, { w: "Zorza", h: "polarna" },
+      { w: "Prognoza", h: "TVN" }, { w: "Antycyklon", h: "słońce" }, { w: "Kałuża", h: "kalosze" },
+      { w: "Nawałnica", h: "alarm" }, { w: "Lód", h: "Antarktyda" }
+    ]
+  },
+
+  "Praca w biurze": {
+    icon: "💼",
+    words: [
+      { w: "Spotkanie", h: "kalendarz" }, { w: "Email", h: "spam" }, { w: "Slack", h: "powiadomienie" },
+      { w: "Excel", h: "arkusz" }, { w: "Powerpoint", h: "slajd" }, { w: "Deadline", h: "panika" },
+      { w: "Kawa", h: "poniedziałek" }, { w: "Szef", h: "Zoom" }, { w: "Korpo", h: "open-space" },
+      { w: "Onboarding", h: "pierwszy" }, { w: "KPI", h: "wykres" }, { w: "Brief", h: "klient" },
+      { w: "Sprint", h: "Agile" }, { w: "Standup", h: "piętnaście" }, { w: "Burnout", h: "wypalenie" },
+      { w: "Korytarz", h: "plotki" }, { w: "Faktura", h: "VAT" }, { w: "Word", h: "dokument" },
+      { w: "Lunch", h: "przerwa" }, { w: "Premia", h: "grudzień" }, { w: "Urlop", h: "26" },
+      { w: "Wniosek", h: "podpis" }, { w: "CV", h: "LinkedIn" }, { w: "Rozmowa", h: "kwalifikacyjna" },
+      { w: "HR", h: "kadry" }, { w: "Awans", h: "krzesło" }
+    ]
+  },
+
+  "Anime": {
+    icon: "🎌",
+    words: [
+      { w: "Naruto", h: "kunai" }, { w: "Goku", h: "Kamehameha" }, { w: "Pikachu", h: "iskra" },
+      { w: "Sailor Moon", h: "księżyc" }, { w: "Dragon Ball", h: "siedem" }, { w: "Death Note", h: "zeszyt" },
+      { w: "Attack on Titan", h: "mur" }, { w: "Demon Slayer", h: "Tanjiro" }, { w: "Jujutsu Kaisen", h: "Gojo" },
+      { w: "My Hero Academia", h: "quirk" }, { w: "Bleach", h: "kosa" }, { w: "Hunter x Hunter", h: "Gon" },
+      { w: "Spirited Away", h: "Ghibli" }, { w: "Totoro", h: "parasol" }, { w: "Mononoke", h: "wilk" },
+      { w: "Akira", h: "motor" }, { w: "Berserk", h: "miecz" }, { w: "Cowboy Bebop", h: "jazz" },
+      { w: "Evangelion", h: "robot" }, { w: "Inuyasha", h: "kieł" }, { w: "Miyazaki", h: "studio" },
+      { w: "Manga", h: "czytanie" }, { w: "Otaku", h: "pokój" }, { w: "Cosplay", h: "przebranie" },
+      { w: "Senpai", h: "starszy" }, { w: "Waifu", h: "ulubiona" }
+    ]
+  },
+
+  "Kosmos": {
+    icon: "🚀",
+    words: [
+      { w: "Księżyc", h: "Apollo" }, { w: "Słońce", h: "korona" }, { w: "Mars", h: "rdzawy" },
+      { w: "Wenus", h: "miłość" }, { w: "Saturn", h: "pierścienie" }, { w: "Asteroida", h: "Bruce Willis" },
+      { w: "Kometa", h: "ogon" }, { w: "Galaktyka", h: "Mleczna" }, { w: "Gwiazda", h: "życzenie" },
+      { w: "Supernowa", h: "wybuch" }, { w: "Teleskop", h: "Hubble" }, { w: "Łazik", h: "Curiosity" },
+      { w: "Skafander", h: "kask" }, { w: "Stacja", h: "ISS" }, { w: "NASA", h: "Houston" },
+      { w: "Pluton", h: "wykluczony" }, { w: "Jowisz", h: "olbrzym" }, { w: "Merkury", h: "termometr" },
+      { w: "UFO", h: "spisek" }, { w: "Roswell", h: "1947" }, { w: "Voyager", h: "płyta" },
+      { w: "Eklipsa", h: "ciemność" }, { w: "Planetoida", h: "pas" }, { w: "Czarna dziura", h: "horyzont" },
+      { w: "Wszechświat", h: "Hawking" }, { w: "Astronom", h: "luneta" }
+    ]
   }
 };
 
@@ -564,6 +654,9 @@ function updateImpostors(delta) {
 //  Logika gry
 // =====================================================
 function startGame() {
+  // Synchronizuj stan togglu — przeglądarki potrafią zapamiętać checkbox
+  // przez F5/restore i rozjechać wewnętrzny state z UI.
+  state.impostorHint = $("impostor-hint-toggle").checked;
   state.players = state.players.map((n, i) => (n && n.trim()) || `Gracz ${i + 1}`);
   if (state.players.length < 3) {
     alert("Potrzebujesz minimum 3 graczy.");
@@ -675,4 +768,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initSetup();
   renderPlayersList();
   $("imp-count").textContent = state.impostors;
+  state.impostorHint = $("impostor-hint-toggle").checked;
 });
