@@ -640,7 +640,6 @@ function revealCard() {
     $("card-word-box").classList.remove("hidden");
     $("card-impostor").classList.add("hidden");
     $("card-word").textContent = state.word;
-    $("card-hint").textContent = `💡 ${state.hint}`;
   }
 }
 
