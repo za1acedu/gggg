@@ -407,6 +407,7 @@ const state = {
   players: ["Gracz 1", "Gracz 2", "Gracz 3", "Gracz 4"],
   impostors: 1,
   category: "__random",
+  impostorHint: true,
   roles: [],
   seen: [],
   word: null,
@@ -532,6 +533,7 @@ function initSetup() {
   $("imp-plus").onclick  = () => updateImpostors(+1);
   $("add-player-btn").onclick = addPlayer;
 
+  $("impostor-hint-toggle").onchange = (e) => state.impostorHint = e.target.checked;
   $("start-btn").onclick = startGame;
   $("rules-btn").onclick = () => showScreen("screen-rules");
   document.querySelectorAll("[data-back]").forEach(b => b.onclick = () => showScreen("screen-setup"));
@@ -628,6 +630,12 @@ function revealCard() {
     $("card-word-box").classList.add("hidden");
     $("card-impostor").classList.remove("hidden");
     $("impostor-category").textContent = state.activeCategory;
+    if (state.impostorHint) {
+      $("impostor-hint").textContent = state.hint;
+      $("impostor-hint").parentElement.classList.remove("hidden");
+    } else {
+      $("impostor-hint").parentElement.classList.add("hidden");
+    }
   } else {
     $("card-word-box").classList.remove("hidden");
     $("card-impostor").classList.add("hidden");
